@@ -241,7 +241,7 @@ main { padding-top: 20px; display: grid; gap: 20px; }
   <header class="top">
     <div class="bar">
       <a class="brand" href="#home"><span class="mark" aria-hidden="true">മ</span><b>Malayalam Mitram</b></a>
-      <a id="hava" href="#account" aria-label="Profile"></a>
+      <div class="row" style="gap:8px"><button class="btn ghost sm" id="hlang" data-lang="1" style="font-size:0.8rem;padding:6px 12px" aria-label="Sound language"></button><a id="hava" href="#account" aria-label="Profile"></a></div>
     </div>
     <div class="kasavu"></div>
   </header>
@@ -681,15 +681,19 @@ function checkTts() { try { ttsOK = !!(window.speechSynthesis && speechSynthesis
 function voiceCount() { try { return speechSynthesis.getVoices().length; } catch (e) { return 0; } }
 var toastT = null;
 function toast(msg) { var t = document.getElementById('toast'); if (!t) return; t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { t.hidden = true; }, 4500); }
-function speak(text, slow) {
+var TAMAP = null;
+function taOf(t) { if (!TAMAP) { TAMAP = {}; TOPICS.forEach(function (x) { x.items.forEach(function (i) { TAMAP[i.ml] = i.ta; if (i.w) TAMAP[i.w.ml] = i.w.ta; }); }); ALPHA.forEach(function (s) { s.items.forEach(function (i) { TAMAP[i.say] = i.ta; TAMAP[i.g] = i.ta; if (i.w) TAMAP[i.w.ml] = i.w.ta; }); }); } return TAMAP[t]; }
+function speak(text, slow) { var m = S.lang || 'ml', ta = taOf(text); if (m !== 'ta' || !ta) speakOne(text, slow, 'ml-IN'); if (m !== 'ml' && ta) speakOne(ta, slow, 'ta-IN', m === 'both'); }
+document.addEventListener('click', function (e) { var b = e.target.closest('[data-lang]'); if (!b) return; S.lang = ({ ml: 'ta', ta: 'both', both: 'ml' })[S.lang || 'ml']; save(); applyAuth(); toast('Sound: ' + ({ ml: 'Malayalam', ta: 'Tamil', both: 'Malayalam, then Tamil' })[S.lang]); });
+function speakOne(text, slow, lang, keep) {
   if (!window.speechSynthesis || typeof SpeechSynthesisUtterance === 'undefined') { toast('Sound is not supported in this browser.'); return; }
   checkTts();
   try {
-    var u = new SpeechSynthesisUtterance(text); u.lang = 'ml-IN'; u.rate = slow ? 0.5 : 0.85;
-    var v = speechSynthesis.getVoices().filter(function (x) { return /^ml/i.test(x.lang); })[0]; if (v) u.voice = v;
+    var u = new SpeechSynthesisUtterance(text); u.lang = lang; u.rate = slow ? 0.5 : 0.85;
+    var v = speechSynthesis.getVoices().filter(function (x) { return x.lang.slice(0, 2).toLowerCase() === lang.slice(0, 2); })[0]; if (v) u.voice = v;
     u.onerror = function (ev) { if (ev && ev.error && ev.error !== 'canceled' && ev.error !== 'interrupted') toast('Could not play the sound on this device.'); };
-    speechSynthesis.cancel(); speechSynthesis.speak(u);
-    if (!ttsOK && voiceCount() > 0) toast('No Malayalam voice found on this device. Add Malayalam in your phone\'s Text-to-speech settings for clear sound.');
+    if (!keep) speechSynthesis.cancel(); speechSynthesis.speak(u);
+    if (!v && voiceCount() > 0) toast('No ' + (lang === 'ta-IN' ? 'Tamil' : 'Malayalam') + ' voice found on this device. Add it in your phone\'s Text-to-speech settings for clear sound.');
   } catch (e) { toast('Could not play the sound on this device.'); }
 }
 function spkBtn(text, label, slow, cls) { label = label || 'Hear it'; return '<button class="btn ' + (cls || 'ghost') + '" data-act="speak" data-text="' + esc(text) + '"' + (slow ? ' data-slow="1"' : '') + ' aria-label="' + esc(label) + '">' + ICON.spk + esc(label) + '</button>'; }
@@ -1048,7 +1052,7 @@ function cur() { try { var c = localStorage.getItem('mm-session'); return c && u
 function me() { return users()[cur()] || {}; }
 async function hashPw(p, salt) { var b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(salt + ':' + p)); return Array.from(new Uint8Array(b)).map(function (x) { return x.toString(16).padStart(2, '0'); }).join(''); }
 function avaHtml(cls) { var a = me(); return a.photo ? '<img class="ava ' + (cls || '') + '" src="' + a.photo + '" alt="">' : '<span class="ava ' + (cls || '') + '">' + esc((a.name || cur() || '?').charAt(0).toUpperCase()) + '</span>'; }
-function applyAuth() { document.body.classList.toggle('noauth', !cur()); var h = document.getElementById('hava'); if (h) h.innerHTML = cur() ? avaHtml() : ''; }
+function applyAuth() { var hl = document.getElementById('hlang'); if (hl) hl.textContent = ({ ml: 'മലയാളം', ta: 'தமிழ்', both: 'മ + த' })[S.lang || 'ml']; document.body.classList.toggle('noauth', !cur()); var h = document.getElementById('hava'); if (h) h.innerHTML = cur() ? avaHtml() : ''; }
 function moveGlass() { var n = document.querySelector('.tabs nav'), g = document.getElementById('glass'), a = n && n.querySelector('[aria-current]'); if (!g || !a || !a.offsetWidth) return; g.style.left = a.offsetLeft + 'px'; g.style.width = a.offsetWidth + 'px'; if (lastG !== a.offsetLeft) { g.classList.remove('go'); void g.offsetWidth; g.classList.add('go'); lastG = a.offsetLeft; } }
 window.addEventListener('resize', function () { lastG = -1; moveGlass(); });
 function enter(u) {
