@@ -1,0 +1,1111 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Malayalam Mitram</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&family=Noto+Sans+Malayalam:wght@400;600;700&family=Noto+Serif+Malayalam:wght@600;800&family=Noto+Sans+Tamil:wght@400;600;700&display=swap">
+<style>
+/* Layout concept: one narrow app column. Sticky nav, a deep-green hero with a kasavu (gold double line) edge, big chunky glyph cards for lessons, large tap targets for quizzes. */
+:root {
+  --bg: #FBF5E4;
+  --dot: #EADBB0;
+  --surface: #FFFDF6;
+  --surface2: #F3E9CE;
+  --ink: #2B1A10;
+  --muted: #6B5744;
+  --line: #E3D3A8;
+  --accent: #8A2420;
+  --primary: #1E6B3B;
+  --primary-ink: #FFFFFF;
+  --gold: #C8921C;
+  --gold-soft: #F8E7B2;
+  --gold-ink: #3A2600;
+  --hero: #7E1F1B;
+  --hero-ink: #FFF4DA;
+  --good: #1E6B3B;
+  --good-bg: #DCEBD3;
+  --bad: #A12B22;
+  --bad-bg: #F6DAD3;
+  --font-display: "Baloo Chettan 2", "Noto Sans Malayalam", system-ui, sans-serif;
+  --font-body: "Nunito", "Noto Sans Tamil", "Noto Sans Malayalam", system-ui, sans-serif;
+  --font-ml: "Noto Serif Malayalam", "Baloo Chettan 2", "Noto Sans Malayalam", serif;
+  --font-ta: "Noto Sans Tamil", "Nunito", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A110B; --dot: #2A1D13; --surface: #261A12; --surface2: #33241A; --ink: #F6EBD0; --muted: #BBA787; --line: #4A3524; --accent: #F2B8A0;
+    --primary: #6CBF84; --primary-ink: #0C2214; --gold: #E3B04B; --gold-soft: #3F3015; --gold-ink: #F8E7B2;
+    --hero: #5E1713; --hero-ink: #FFF4DA; --good: #8FD39F; --good-bg: #1F3A26; --bad: #F29A8F; --bad-bg: #43211C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1A110B; --dot: #2A1D13; --surface: #261A12; --surface2: #33241A; --ink: #F6EBD0; --muted: #BBA787; --line: #4A3524; --accent: #F2B8A0;
+  --primary: #6CBF84; --primary-ink: #0C2214; --gold: #E3B04B; --gold-soft: #3F3015; --gold-ink: #F8E7B2;
+  --hero: #5E1713; --hero-ink: #FFF4DA; --good: #8FD39F; --good-bg: #1F3A26; --bad: #F29A8F; --bad-bg: #43211C;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); background-image: radial-gradient(var(--dot) 1.2px, transparent 1.6px); background-size: 22px 22px;
+  color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+  padding-block: 0 112px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.shell { max-width: 880px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; margin: 0; text-wrap: balance; }
+h2 { font-size: 1.5rem; color: var(--accent); } h3 { font-size: 1.15rem; }
+p { margin: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+a { color: var(--primary); }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.ml { font-family: var(--font-ml); }
+.ta { font-family: var(--font-ta); }
+.muted { color: var(--muted); }
+.small { font-size: 0.875rem; }
+.label { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+
+/* header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); padding-block: 10px 0; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; padding-bottom: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); min-width: 0; }
+.mark { width: 40px; height: 40px; border-radius: 12px; background: var(--hero); color: var(--gold); display: grid; place-items: center; font-family: var(--font-ml); font-size: 1.7rem; font-weight: 800; flex: none; }
+.brand b { font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; }
+.kasavu { height: 14px; background: radial-gradient(circle at 7px 7px, var(--hero) 2.2px, transparent 2.8px) 0 0 / 14px 14px, var(--gold); }
+.top .kasavu { height: 10px; background: radial-gradient(circle at 5px 5px, var(--hero) 1.6px, transparent 2.2px) 0 0 / 10px 10px, var(--gold); }
+main { padding-top: 20px; display: grid; gap: 20px; }
+
+/* hero */
+.hero { position: relative; background: var(--hero); color: var(--hero-ink); border-radius: 14px; padding: 22px 20px 0; overflow: hidden; }
+.hero .greet { font-family: var(--font-ml); font-size: clamp(2rem, 8.5vw, 3.1rem); font-weight: 800; line-height: 1.25; color: var(--gold-soft); padding-right: 80px; }
+.hero .sub { padding-right: 80px; }
+.lamp { position: absolute; top: 16px; right: 18px; width: 52px; height: auto; color: var(--gold); }
+.hero .sub { opacity: 0.9; margin-top: 4px; }
+.hero .kasavu { margin: 18px -20px 0; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: 10px; padding: 14px; min-width: 0; }
+.stat b { display: block; font-family: var(--font-display); font-size: 1.9rem; line-height: 1.1; font-variant-numeric: tabular-nums; color: var(--accent); }
+.stat span { color: var(--muted); font-size: 0.85rem; }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; min-width: 0; }
+.card.gold { background: var(--gold-soft); border-color: var(--gold); color: var(--gold-ink); }
+.row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.stack { display: grid; gap: 12px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+
+.btn { border: 0; background: var(--primary); color: var(--primary-ink); font-weight: 800; padding: 12px 20px; border-radius: 999px; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; justify-content: center; min-height: 46px; }
+.btn.gold { background: var(--gold); color: #2A1E00; }
+.btn.ghost { background: transparent; color: var(--ink); border: 2px solid var(--line); }
+.btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+.btn svg, .icon { width: 20px; height: 20px; flex: none; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 800; background: var(--surface2); color: var(--muted); }
+.pill.good { background: var(--good-bg); color: var(--good); }
+.pill.gold { background: var(--gold-soft); color: var(--gold-ink); border: 1px solid var(--gold); }
+.bar-track { height: 10px; background: var(--surface2); border-radius: 999px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--primary); border-radius: 999px; }
+.bar-fill.gold { background: var(--gold); }
+
+/* weekly chart */
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; align-items: end; height: 150px; }
+.week div { display: grid; grid-template-rows: 1fr auto auto; height: 100%; text-align: center; font-size: 0.78rem; color: var(--muted); gap: 2px; }
+.week i { align-self: end; background: var(--primary); border-radius: 8px 8px 3px 3px; min-height: 4px; width: 100%; }
+.week i.zero { background: var(--surface2); }
+.week b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* topic list */
+.level h2 { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.tcard { display: grid; gap: 8px; text-align: left; width: 100%; background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: 10px; padding: 14px; text-decoration: none; color: var(--ink); min-width: 0; }
+.tcard:hover { border-color: var(--primary); }
+.tcard.locked { opacity: 0.6; cursor: not-allowed; }
+.tcard .t1 { display: flex; justify-content: space-between; gap: 8px; align-items: start; }
+.tcard .tn { font-weight: 800; font-size: 1.05rem; }
+.tcard .tm { font-family: var(--font-ml); font-size: 1.5rem; font-weight: 700; line-height: 1.1; }
+.tcard .meta { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* topic page */
+.crumb { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.crumb a { text-decoration: none; font-weight: 700; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.steps button { background: var(--surface); border: 2px solid var(--line); border-radius: 14px; padding: 10px 6px; font-weight: 800; font-size: 0.92rem; min-width: 0; }
+.steps button[aria-selected="true"] { background: var(--hero); border-color: var(--hero); color: var(--hero-ink); }
+.steps small { display: block; font-weight: 600; opacity: 0.8; }
+
+.flash { background: var(--surface); border: 6px double var(--gold); border-radius: 6px; padding: 22px 18px 18px; text-align: center; display: grid; gap: 10px; justify-items: center; outline: 2px solid var(--hero); outline-offset: 3px; margin: 5px; }
+.glyph { font-family: var(--font-ml); font-weight: 800; line-height: 1.05; font-size: clamp(3.6rem, 20vw, 7rem); }
+.glyph.word { font-size: clamp(2.2rem, 11vw, 3.8rem); }
+.glyph.sent { font-size: clamp(1.7rem, 7.5vw, 2.6rem); }
+.rom { font-size: 1.25rem; font-weight: 800; color: var(--primary); }
+.mean { display: grid; gap: 2px; }
+.mean .ta { font-size: 1.35rem; font-weight: 700; }
+.example { background: var(--surface2); border-radius: 14px; padding: 12px 16px; width: 100%; display: grid; gap: 2px; }
+.example .ml { font-size: 1.7rem; font-weight: 700; }
+.dots { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.dots i.on { background: var(--primary); }
+.dots i.cur { background: var(--gold); transform: scale(1.35); }
+.tip { display: grid; gap: 4px; }
+.tip p { font-size: 0.95rem; }
+
+.q { display: grid; gap: 14px; }
+.qprompt { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px 16px; text-align: center; display: grid; gap: 6px; justify-items: center; }
+.opts { display: grid; gap: 10px; }
+.opt { text-align: left; background: var(--surface); border: 2px solid var(--line); border-radius: 14px; padding: 12px 14px; min-height: 54px; display: grid; gap: 1px; width: 100%; }
+.opt:hover:not([disabled]) { border-color: var(--primary); }
+.opt .ml { font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+.opt .ta { font-size: 1.15rem; font-weight: 700; }
+.opt.right { background: var(--good-bg); border-color: var(--good); }
+.opt.wrong { background: var(--bad-bg); border-color: var(--bad); }
+.fb { border-radius: 14px; padding: 12px 14px; display: grid; gap: 2px; }
+.fb.good { background: var(--good-bg); color: var(--ink); border: 1px solid var(--good); }
+.fb.bad { background: var(--bad-bg); color: var(--ink); border: 1px solid var(--bad); }
+.score { font-family: var(--font-display); font-size: 3.4rem; font-weight: 800; line-height: 1; }
+
+.mic-wrap { display: grid; gap: 10px; justify-items: center; text-align: center; }
+.mic { width: 96px; height: 96px; border-radius: 50%; border: 0; background: var(--primary); color: var(--primary-ink); display: grid; place-items: center; box-shadow: 0 0 0 8px var(--surface2); }
+.mic svg { width: 40px; height: 40px; }
+.mic.on { background: var(--bad); animation: pulse 1.3s ease-in-out infinite; }
+.mic[disabled] { opacity: 0.6; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 6px var(--bad-bg); } 50% { box-shadow: 0 0 0 16px var(--bad-bg); } }
+@media (prefers-reduced-motion: reduce) { .mic.on { animation: none; } }
+.live { min-height: 2.2em; font-family: var(--font-ml); font-size: 1.4rem; font-weight: 600; word-break: break-word; }
+.res-list { display: grid; gap: 8px; }
+.res-row { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 12px; background: var(--surface2); }
+.res-row .ml { font-size: 1.25rem; font-weight: 700; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.tbl th { text-align: left; font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); padding: 6px 8px; }
+.tbl td { padding: 9px 8px; border-top: 1px solid var(--line); vertical-align: middle; }
+.scroll { overflow-x: auto; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: var(--surface2); border-radius: 12px; padding: 8px 12px; display: grid; }
+.chip .ml { font-size: 1.3rem; font-weight: 700; line-height: 1.2; }
+.foot { margin-top: 28px; text-align: center; }
+
+/* bottom tab bar */
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: flex; justify-content: center; padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px)); background: linear-gradient(to top, var(--bg) 60%, transparent); pointer-events: none; }
+.tabs nav { pointer-events: auto; display: flex; gap: 2px; background: var(--hero); padding: 6px; border-radius: 999px; box-shadow: 0 6px 20px rgba(0,0,0,0.28); width: 100%; max-width: 520px; }
+.tabs a { flex: 1; min-width: 0; display: grid; justify-items: center; align-content: center; gap: 1px; padding: 6px 2px; border-radius: 999px; color: var(--hero-ink); text-decoration: none; font-size: 0.68rem; font-weight: 800; line-height: 1.2; }
+.tabs a svg { width: 22px; height: 22px; }
+.tabs a .glyph-ic { font-family: var(--font-ml); font-size: 1.3rem; font-weight: 800; line-height: 22px; height: 22px; }
+.tabs a[aria-current="page"] { background: var(--gold); color: #2A1E00; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(100px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 12px; z-index: 40; width: max-content; max-width: min(92%, 420px); font-size: 0.9rem; text-align: center; }
+.spk { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--line); background: var(--surface2); color: var(--ink); display: grid; place-items: center; padding: 0; flex: none; }
+.btn.sm { padding: 8px 14px; font-size: 0.9rem; }
+.tilelink { text-decoration: none; color: var(--ink); }
+.tilelink:hover { border-color: var(--primary); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 8px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: 12px; padding: 8px 4px; display: grid; justify-items: center; gap: 0; min-width: 0; }
+.tile .g { font-family: var(--font-ml); font-size: 1.9rem; font-weight: 700; line-height: 1.25; }
+.tile .small { color: var(--muted); font-weight: 700; }
+.tile .tamil { font-family: var(--font-ta); font-size: 0.95rem; font-weight: 700; color: var(--primary); line-height: 1.3; }
+.tile.sel .tamil { color: var(--gold-soft); }
+.tile.sel { background: var(--hero); border-color: var(--hero); color: var(--hero-ink); }
+.tile.sel .small { color: var(--gold-soft); }
+.sheet { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(92px + env(safe-area-inset-bottom, 0px)); width: min(520px, calc(100% - 24px)); z-index: 25; background: var(--surface); border: 3px double var(--gold); border-radius: 14px; padding: 12px 14px; display: grid; grid-template-columns: auto 1fr auto; gap: 8px 14px; align-items: center; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.sheet .big { font-family: var(--font-ml); font-size: 3rem; font-weight: 800; line-height: 1.1; }
+.sheet .acts { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; }
+.spacer { height: 170px; }
+</style>
+
+<div class="shell">
+  <header class="top">
+    <div class="bar">
+      <a class="brand" href="#home"><span class="mark" aria-hidden="true">മ</span><b>Malayalam Mitram</b></a>
+    </div>
+    <div class="kasavu"></div>
+  </header>
+  <main id="app"></main>
+  <p class="foot muted small" id="foot"></p>
+  <div class="tabs"><nav aria-label="Main">
+    <a href="#home" data-nav="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8M5 9.5V20h14V9.5"/></svg>Home</a>
+    <a href="#learn" data-nav="learn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2zM12 6v14"/></svg>Learn</a>
+    <a href="#letters" data-nav="letters"><span class="glyph-ic" aria-hidden="true">അ</span>Letters</a>
+    <a href="#daily" data-nav="daily"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>Quiz</a>
+    <a href="#dashboard" data-nav="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Dashboard</a>
+  </nav></div>
+  <div class="toast" id="toast" role="status" hidden></div>
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+function L(ml, rom, ta, en, w) { return { letter: true, ml: ml, rom: rom, ta: ta, en: en, w: w ? { ml: w[0], rom: w[1], ta: w[2], en: w[3] } : null, alts: [] }; }
+function W(ml, rom, ta, en, alts) { return { ml: ml, rom: rom, ta: ta, en: en, alts: alts || [] }; }
+
+var LEVELS = [
+  { id: 'l1', name: 'Level 1', title: 'Letters', ml: 'അക്ഷരമാല', sub: 'The Malayalam alphabet, the way Kerala children start', topics: [
+    { id: 'vowels', name: 'Vowels', ml: 'സ്വരങ്ങൾ', kind: 'letter',
+      tip: 'Say each vowel out loud three times, then say its example word. Kerala children chant the vowels in order, so chant along.',
+      bridge: 'Almost every vowel has the same shape of sound as Tamil. அ ஆ இ ஈ உ ஊ எ ஏ ஐ ஒ ஓ ஔ all exist in Malayalam.',
+      items: [
+        L('അ', 'a', 'அ', 'short "a", as in "but"', ['അമ്മ', 'amma', 'அம்மா', 'mother']),
+        L('ആ', 'aa', 'ஆ', 'long "aa"', ['ആന', 'aana', 'யானை', 'elephant']),
+        L('ഇ', 'i', 'இ', 'short "i"', ['ഇല', 'ila', 'இலை', 'leaf']),
+        L('ഈ', 'ee', 'ஈ', 'long "ee"', ['ഈച്ച', 'eecha', 'ஈ', 'fly']),
+        L('ഉ', 'u', 'உ', 'short "u"', ['ഉപ്പ്', 'uppu', 'உப்பு', 'salt']),
+        L('ഊ', 'oo', 'ஊ', 'long "oo"', ['ഊഞ്ഞാൽ', 'oonjaal', 'ஊஞ்சல்', 'swing']),
+        L('ഋ', 'ru', 'ரு', 'vowel "ri", used in Sanskrit words', ['ഋഷി', 'rishi', 'முனிவர்', 'sage']),
+        L('എ', 'e', 'எ', 'short "e"', ['എലി', 'eli', 'எலி', 'rat']),
+        L('ഏ', 'ae', 'ஏ', 'long "ae"', ['ഏണി', 'eni', 'ஏணி', 'ladder']),
+        L('ഐ', 'ai', 'ஐ', '"ai" as in "aisle"', ['ഐസ്', 'ais', 'ஐஸ்', 'ice']),
+        L('ഒ', 'o', 'ஒ', 'short "o"', ['ഒട്ടകം', 'ottakam', 'ஒட்டகம்', 'camel']),
+        L('ഓ', 'oh', 'ஓ', 'long "o"', ['ഓറഞ്ച്', 'oranj', 'ஆரஞ்சு', 'orange']),
+        L('ഔ', 'au', 'ஔ', '"au" as in "cow"', ['ഔഷധം', 'aushadham', 'மருந்து', 'medicine'])
+      ] },
+    { id: 'cons1', name: 'Consonants 1', ml: 'ക മുതൽ ഞ വരെ', kind: 'letter',
+      tip: 'Learn these in pairs: the plain sound first, then its breathy twin. Breathy letters have more air, like saying "k" and then "kh".',
+      bridge: 'Tamil has no breathy letters, so ഖ ഗ ഘ use க in Tamil writing. Malayalam writes them separately.',
+      items: [
+        L('ക', 'ka', 'க', 'same as Tamil க', ['കടൽ', 'kadal', 'கடல்', 'sea']),
+        L('ഖ', 'kha', 'க', 'breathy "kh", no Tamil letter', ['ഖനി', 'khani', 'சுரங்கம்', 'mine']),
+        L('ഗ', 'ga', 'க', 'soft "ga", Tamil writes it as க', ['ഗാനം', 'gaanam', 'பாடல்', 'song']),
+        L('ഘ', 'gha', 'க', 'breathy "gh", no Tamil letter', ['ഘടികാരം', 'ghadikaaram', 'கடிகாரம்', 'clock']),
+        L('ങ', 'nga', 'ங', 'same as Tamil ங', ['അങ്ങാടി', 'angaadi', 'சந்தை', 'market']),
+        L('ച', 'cha', 'ச', 'same as Tamil ச', ['ചന്ദ്രൻ', 'chandran', 'நிலா', 'moon']),
+        L('ഛ', 'chha', 'ச', 'breathy "chh", no Tamil letter', ['ഛായ', 'chhaaya', 'நிழல்', 'shadow']),
+        L('ജ', 'ja', 'ஜ', 'same as Tamil ஜ', ['ജലം', 'jalam', 'நீர்', 'water']),
+        L('ഝ', 'jha', 'ஜ', 'breathy "jh", rare, no Tamil letter', null),
+        L('ഞ', 'nja', 'ஞ', 'same as Tamil ஞ', ['ഞണ്ട്', 'njandu', 'நண்டு', 'crab'])
+      ] },
+    { id: 'cons2', name: 'Consonants 2', ml: 'ട മുതൽ ന വരെ', kind: 'letter',
+      tip: 'Capital letters in the pronunciation mean the tongue curls back (ட type). Small letters mean the tongue touches the teeth (த type). You already know both from Tamil.',
+      bridge: 'ട ണ are Tamil ட ண. ത ന are Tamil த ந. Only the breathy and soft versions are new.',
+      items: [
+        L('ട', 'Ta', 'ட', 'same as Tamil ட, tongue curled back', ['ടിക്കറ്റ്', 'tikkattu', 'டிக்கெட்', 'ticket']),
+        L('ഠ', 'Tha', 'ட', 'breathy "Th", rare, no Tamil letter', null),
+        L('ഡ', 'Da', 'ட', 'soft "Da", Tamil writes it as ட', ['ഡോക്ടർ', 'doktar', 'மருத்துவர்', 'doctor']),
+        L('ഢ', 'Dha', 'ட', 'breathy "Dh", rare, no Tamil letter', null),
+        L('ണ', 'Na', 'ண', 'same as Tamil ண', ['മണി', 'mani', 'மணி', 'bell']),
+        L('ത', 'ta', 'த', 'same as Tamil த, tongue on teeth', ['തല', 'thala', 'தலை', 'head']),
+        L('ഥ', 'tha', 'த', 'breathy "th", no Tamil letter', ['രഥം', 'ratham', 'தேர்', 'chariot']),
+        L('ദ', 'da', 'த', 'soft "da", Tamil writes it as த', ['ദിവസം', 'divasam', 'நாள்', 'day']),
+        L('ധ', 'dha', 'த', 'breathy "dh", no Tamil letter', ['ധനം', 'dhanam', 'செல்வம்', 'wealth']),
+        L('ന', 'na', 'ந', 'same as Tamil ந', ['നദി', 'nadi', 'ஆறு', 'river'])
+      ] },
+    { id: 'cons3', name: 'Consonants 3', ml: 'പ മുതൽ വ വരെ', kind: 'letter',
+      tip: 'These nine are the everyday letters. Say each one with its example word and tap the speaker to compare.',
+      bridge: 'പ മ യ ര ല വ are the same as Tamil ப ம ய ர ல வ.',
+      items: [
+        L('പ', 'pa', 'ப', 'same as Tamil ப', ['പഴം', 'pazham', 'பழம்', 'fruit']),
+        L('ഫ', 'pha', 'ப', 'breathy "ph", no Tamil letter', ['ഫലം', 'phalam', 'பலன்', 'result']),
+        L('ബ', 'ba', 'ப', 'soft "ba", Tamil writes it as ப', ['ബസ്', 'bas', 'பேருந்து', 'bus']),
+        L('ഭ', 'bha', 'ப', 'breathy "bh", no Tamil letter', ['ഭൂമി', 'bhoomi', 'பூமி', 'earth']),
+        L('മ', 'ma', 'ம', 'same as Tamil ம', ['മരം', 'maram', 'மரம்', 'tree']),
+        L('യ', 'ya', 'ய', 'same as Tamil ய', ['യാത്ര', 'yaathra', 'பயணம்', 'journey']),
+        L('ര', 'ra', 'ர', 'same as Tamil ர', ['രാജാവ്', 'raajaavu', 'அரசன்', 'king']),
+        L('ല', 'la', 'ல', 'same as Tamil ல', ['ലോകം', 'lokam', 'உலகம்', 'world']),
+        L('വ', 'va', 'வ', 'same as Tamil வ', ['വീട്', 'veedu', 'வீடு', 'house'])
+      ] },
+    { id: 'cons4', name: 'Consonants 4', ml: 'ശ മുതൽ റ വരെ', kind: 'letter',
+      tip: 'ഴ is the famous Malayalam sound, the same ழ you already say in Tamil. The name "Malayalam" itself ends in it in many spellings.',
+      bridge: 'ള ഴ റ are Tamil ள ழ ற. These three are easy for you and hard for many other learners.',
+      items: [
+        L('ശ', 'sha', 'ச', '"sh" sound', ['ശബ്ദം', 'shabdam', 'ஒலி', 'sound']),
+        L('ഷ', 'shha', 'ஷ', 'same as Tamil ஷ', ['ഷർട്ട്', 'shartt', 'சட்டை', 'shirt']),
+        L('സ', 'sa', 'ஸ', 'same as Tamil ஸ', ['സമയം', 'samayam', 'நேரம்', 'time']),
+        L('ഹ', 'ha', 'ஹ', 'same as Tamil ஹ', ['ഹൃദയം', 'hridayam', 'இதயம்', 'heart']),
+        L('ള', 'lla', 'ள', 'same as Tamil ள', ['കളി', 'kali', 'விளையாட்டு', 'game']),
+        L('ഴ', 'zha', 'ழ', 'same as Tamil ழ', ['മഴ', 'mazha', 'மழை', 'rain']),
+        L('റ', 'rra', 'ற', 'same as Tamil ற', ['റോഡ്', 'rodu', 'சாலை', 'road'])
+      ] }
+  ] },
+  { id: 'l2', name: 'Level 2', title: 'First Words', ml: 'ആദ്യ വാക്കുകൾ', sub: 'Greetings, numbers, family and colours', topics: [
+    { id: 'greet', name: 'Greetings', ml: 'അഭിവാദനം', kind: 'word',
+      tip: 'Say every word out loud with a smile. Start every conversation with നമസ്കാരം and finish with നന്ദി.',
+      bridge: 'நன்றி and நலமா sound close to നന്ദി and സുഖമാണോ in meaning and tone.',
+      items: [
+        W('നമസ്കാരം', 'namaskaaram', 'வணக்கம்', 'Hello / Greetings'),
+        W('ശുഭ പ്രഭാതം', 'shubha prabhaatham', 'காலை வணக்கம்', 'Good morning'),
+        W('ശുഭ രാത്രി', 'shubha raathri', 'இனிய இரவு', 'Good night'),
+        W('സുഖമാണോ?', 'sukhamaano?', 'நலமா?', 'How are you?'),
+        W('സുഖമാണ്', 'sukhamaanu', 'நலம்', 'I am fine'),
+        W('നന്ദി', 'nandi', 'நன்றி', 'Thank you'),
+        W('ക്ഷമിക്കണം', 'kshamikkanam', 'மன்னிக்கவும்', 'Sorry / Excuse me'),
+        W('ദയവായി', 'dayavaayi', 'தயவுசெய்து', 'Please'),
+        W('അതെ', 'athe', 'ஆம்', 'Yes'),
+        W('ഇല്ല', 'illa', 'இல்லை', 'No'),
+        W('ശരി', 'sari', 'சரி', 'OK'),
+        W('പിന്നെ കാണാം', 'pinne kaanaam', 'பிறகு பார்க்கலாம்', 'See you later')
+      ] },
+    { id: 'numbers', name: 'Numbers 1 to 10', ml: 'സംഖ്യകൾ', kind: 'word',
+      tip: 'Count your fingers in Malayalam every morning. Ten numbers, ten fingers.',
+      bridge: 'ഒന്ന് രണ്ട് മൂന്ന് sound very close to ஒன்று இரண்டு மூன்று. ആറ് ഏഴ് എട്ട് are close to ஆறு ஏழு எட்டு.',
+      items: [
+        W('ഒന്ന്', 'onnu', 'ஒன்று', 'One', ['1', '൧']),
+        W('രണ്ട്', 'randu', 'இரண்டு', 'Two', ['2', '൨']),
+        W('മൂന്ന്', 'moonnu', 'மூன்று', 'Three', ['3', '൩']),
+        W('നാല്', 'naalu', 'நான்கு', 'Four', ['4', '൪']),
+        W('അഞ്ച്', 'anchu', 'ஐந்து', 'Five', ['5', '൫']),
+        W('ആറ്', 'aaru', 'ஆறு', 'Six', ['6', '൬']),
+        W('ഏഴ്', 'ezhu', 'ஏழு', 'Seven', ['7', '൭']),
+        W('എട്ട്', 'ettu', 'எட்டு', 'Eight', ['8', '൮']),
+        W('ഒമ്പത്', 'ombathu', 'ஒன்பது', 'Nine', ['9', '൯']),
+        W('പത്ത്', 'pathu', 'பத்து', 'Ten', ['10', '൧൦'])
+      ] },
+    { id: 'family', name: 'Family', ml: 'കുടുംബം', kind: 'word',
+      tip: 'Malayalam has separate words for elder and younger brothers and sisters. ചേട്ടൻ and ചേച്ചി are the elder ones, and Kerala children use them to address any older boy or girl politely.',
+      bridge: 'அம்மா is അമ്മ. அப்பா is അച്ഛൻ (not അപ്പ). அண்ணன் is ചേട്ടൻ.',
+      items: [
+        W('അമ്മ', 'amma', 'அம்மா', 'Mother'),
+        W('അച്ഛൻ', 'achan', 'அப்பா', 'Father'),
+        W('ചേട്ടൻ', 'chettan', 'அண்ணன்', 'Elder brother'),
+        W('ചേച്ചി', 'chechi', 'அக்கா', 'Elder sister'),
+        W('അനിയൻ', 'aniyan', 'தம்பி', 'Younger brother'),
+        W('അനിയത്തി', 'aniyathi', 'தங்கை', 'Younger sister'),
+        W('അപ്പൂപ്പൻ', 'appooppan', 'தாத்தா', 'Grandfather'),
+        W('അമ്മൂമ്മ', 'ammoomma', 'பாட்டி', 'Grandmother'),
+        W('മകൻ', 'makan', 'மகன்', 'Son'),
+        W('മകൾ', 'makal', 'மகள்', 'Daughter'),
+        W('സുഹൃത്ത്', 'suhruthu', 'நண்பன்', 'Friend')
+      ] },
+    { id: 'colours', name: 'Colours', ml: 'നിറങ്ങൾ', kind: 'word',
+      tip: 'Point at things around you and name their colour in Malayalam.',
+      bridge: 'നീല is நீலம், പച്ച is பச்சை, വെള്ള is வெள்ளை and കറുപ്പ് is கருப்பு. These are almost the same.',
+      items: [
+        W('ചുവപ്പ്', 'chuvappu', 'சிவப்பு', 'Red'),
+        W('നീല', 'neela', 'நீலம்', 'Blue'),
+        W('പച്ച', 'pacha', 'பச்சை', 'Green'),
+        W('മഞ്ഞ', 'manja', 'மஞ்சள்', 'Yellow'),
+        W('വെള്ള', 'vella', 'வெள்ளை', 'White'),
+        W('കറുപ്പ്', 'karuppu', 'கருப்பு', 'Black'),
+        W('ഓറഞ്ച്', 'oranj', 'ஆரஞ்சு', 'Orange'),
+        W('പിങ്ക്', 'pink', 'இளஞ்சிவப்பு', 'Pink'),
+        W('നിറം', 'niram', 'நிறம்', 'Colour')
+      ] }
+  ] },
+  { id: 'l3', name: 'Level 3', title: 'My World', ml: 'എന്റെ ലോകം', sub: 'Animals, food, the body, time and days', topics: [
+    { id: 'animals', name: 'Animals', ml: 'മൃഗങ്ങൾ', kind: 'word',
+      tip: 'Kerala children learn animals with picture books. Picture each animal as you say its name.',
+      bridge: 'ആന is யானை, പൂച്ച is பூனை, നായ is நாய், കുതിര is குதிரை. Very close.',
+      items: [
+        W('പൂച്ച', 'poocha', 'பூனை', 'Cat'),
+        W('നായ', 'naaya', 'நாய்', 'Dog'),
+        W('ആന', 'aana', 'யானை', 'Elephant'),
+        W('പശു', 'pashu', 'பசு', 'Cow'),
+        W('കോഴി', 'kozhi', 'கோழி', 'Hen'),
+        W('പക്ഷി', 'pakshi', 'பறவை', 'Bird'),
+        W('മീൻ', 'meen', 'மீன்', 'Fish'),
+        W('കുതിര', 'kuthira', 'குதிரை', 'Horse'),
+        W('കടുവ', 'kaduva', 'புலி', 'Tiger'),
+        W('സിംഹം', 'simham', 'சிங்கம்', 'Lion'),
+        W('കുരങ്ങ്', 'kurangu', 'குரங்கு', 'Monkey'),
+        W('എലി', 'eli', 'எலி', 'Rat')
+      ] },
+    { id: 'food', name: 'Food and Drink', ml: 'ഭക്ഷണം', kind: 'word',
+      tip: 'Next time you eat, name the food in Malayalam before the first bite.',
+      bridge: 'തേങ്ങ is தேங்காய், ഉപ്പ് is உப்பு, പാൽ is பால், ചോറ് is சாதம்.',
+      items: [
+        W('വെള്ളം', 'vellam', 'தண்ணீர்', 'Water'),
+        W('ചോറ്', 'choru', 'சாதம்', 'Rice'),
+        W('ചായ', 'chaaya', 'தேநீர்', 'Tea'),
+        W('പാൽ', 'paal', 'பால்', 'Milk'),
+        W('വാഴപ്പഴം', 'vaazhappazham', 'வாழைப்பழம்', 'Banana'),
+        W('മാങ്ങ', 'maanga', 'மாங்காய்', 'Mango'),
+        W('ആപ്പിൾ', 'aappil', 'ஆப்பிள்', 'Apple'),
+        W('ഉപ്പ്', 'uppu', 'உப்பு', 'Salt'),
+        W('മുട്ട', 'mutta', 'முட்டை', 'Egg'),
+        W('റൊട്ടി', 'rotti', 'ரொட்டி', 'Bread'),
+        W('തേങ്ങ', 'thenga', 'தேங்காய்', 'Coconut')
+      ] },
+    { id: 'body', name: 'My Body', ml: 'ശരീരം', kind: 'word',
+      tip: 'Touch each body part as you say it, like a children\'s action song.',
+      bridge: 'കണ്ണ് is கண், മൂക്ക് is மூக்கு, വായ is வாய், കൈ is கை, കാൽ is கால். Nearly identical.',
+      items: [
+        W('തല', 'thala', 'தலை', 'Head'),
+        W('മുടി', 'mudi', 'முடி', 'Hair'),
+        W('കണ്ണ്', 'kannu', 'கண்', 'Eye'),
+        W('മൂക്ക്', 'mookku', 'மூக்கு', 'Nose'),
+        W('വായ', 'vaaya', 'வாய்', 'Mouth'),
+        W('ചെവി', 'chevi', 'காது', 'Ear'),
+        W('പല്ല്', 'pallu', 'பல்', 'Tooth'),
+        W('കൈ', 'kai', 'கை', 'Hand'),
+        W('കാൽ', 'kaal', 'கால்', 'Leg / Foot'),
+        W('വയറ്', 'vayaru', 'வயிறு', 'Stomach')
+      ] },
+    { id: 'time', name: 'Time of Day', ml: 'സമയം', kind: 'word',
+      tip: 'Use one of these words in your head each time you check the time today.',
+      bridge: 'നാളെ is நாளை, ഇന്ന് is இன்று, ഇന്നലെ is நேற்று. வாரம் is ആഴ്ച.',
+      items: [
+        W('ഇന്ന്', 'innu', 'இன்று', 'Today'),
+        W('നാളെ', 'naale', 'நாளை', 'Tomorrow'),
+        W('ഇന്നലെ', 'innale', 'நேற்று', 'Yesterday'),
+        W('രാവിലെ', 'raavile', 'காலை', 'Morning'),
+        W('ഉച്ചയ്ക്ക്', 'ucchakku', 'மதியம்', 'Afternoon'),
+        W('വൈകുന്നേരം', 'vaikunneram', 'மாலை', 'Evening'),
+        W('രാത്രി', 'raathri', 'இரவு', 'Night'),
+        W('ആഴ്ച', 'aazhcha', 'வாரம்', 'Week')
+      ] },
+    { id: 'days', name: 'Days of the Week', ml: 'ആഴ്ചയിലെ ദിവസങ്ങൾ', kind: 'word',
+      tip: 'Say all seven in order. Then say them again starting from today\'s day.',
+      bridge: 'തിങ്കൾ is திங்கள், ചൊവ്വ is செவ்வாய், ബുധൻ is புதன், വ്യാഴം is வியாழன், വെള്ളി is வெள்ளி, ശനി is சனி, ഞായർ is ஞாயிறு.',
+      items: [
+        W('തിങ്കൾ', 'thinkal', 'திங்கள்', 'Monday'),
+        W('ചൊവ്വ', 'chovva', 'செவ்வாய்', 'Tuesday'),
+        W('ബുധൻ', 'budhan', 'புதன்', 'Wednesday'),
+        W('വ്യാഴം', 'vyaazham', 'வியாழன்', 'Thursday'),
+        W('വെള്ളി', 'velli', 'வெள்ளி', 'Friday'),
+        W('ശനി', 'shani', 'சனி', 'Saturday'),
+        W('ഞായർ', 'njaayar', 'ஞாயிறு', 'Sunday')
+      ] }
+  ] },
+  { id: 'l4', name: 'Level 4', title: 'Start Speaking', ml: 'സംസാരിക്കാം', sub: 'Short sentences you can use in real conversations', topics: [
+    { id: 'pronouns', name: 'Me, You, Them', ml: 'ഞാൻ, നീ, അവർ', kind: 'word',
+      tip: 'Use നീ only with friends and younger people. Use നിങ്ങൾ with elders and strangers.',
+      bridge: 'ഞാൻ is நான், നീ is நீ, നിങ്ങൾ is நீங்கள், അവൻ is அவன், അവൾ is அவள், ഞങ്ങൾ is நாங்கள், നമ്മൾ is நாம்.',
+      items: [
+        W('ഞാൻ', 'njaan', 'நான்', 'I'),
+        W('നീ', 'nee', 'நீ', 'You (informal)'),
+        W('നിങ്ങൾ', 'ningal', 'நீங்கள்', 'You (respectful / plural)'),
+        W('അവൻ', 'avan', 'அவன்', 'He'),
+        W('അവൾ', 'aval', 'அவள்', 'She'),
+        W('ഞങ്ങൾ', 'njangal', 'நாங்கள்', 'We (not including you)'),
+        W('നമ്മൾ', 'nammal', 'நாம்', 'We (including you)'),
+        W('അവർ', 'avar', 'அவர்கள்', 'They')
+      ] },
+    { id: 'intro', name: 'Introduce Yourself', ml: 'സ്വയം പരിചയപ്പെടുത്താം', kind: 'sentence',
+      tip: 'Say the full sentence once slowly, then once at normal speed. Replace the name Maya with your own name when you use it for real.',
+      bridge: 'തമിഴ്നാട് is தமிழ்நாடு. ഞാൻ ... ആണ് works like நான் ... ஆகும் in meaning.',
+      items: [
+        W('എന്റെ പേര് മായ ആണ്', 'ente peru Maya aanu', 'என் பெயர் மாயா', 'My name is Maya'),
+        W('നിങ്ങളുടെ പേര് എന്താണ്?', 'ningalude peru enthaanu?', 'உங்கள் பெயர் என்ன?', 'What is your name?'),
+        W('ഞാൻ തമിഴ്നാട്ടിൽ നിന്നാണ്', 'njaan thamizhnaattil ninnaanu', 'நான் தமிழ்நாட்டிலிருந்து வருகிறேன்', 'I am from Tamil Nadu'),
+        W('നിങ്ങൾ എവിടെ നിന്നാണ്?', 'ningal evide ninnaanu?', 'நீங்கள் எங்கிருந்து வருகிறீர்கள்?', 'Where are you from?'),
+        W('ഞാൻ മലയാളം പഠിക്കുകയാണ്', 'njaan malayaalam padikkukayaanu', 'நான் மலையாளம் கற்றுக்கொண்டிருக்கிறேன்', 'I am learning Malayalam'),
+        W('നിങ്ങളെ കണ്ടതിൽ സന്തോഷം', 'ningale kandathil santhosham', 'உங்களைப் பார்த்ததில் மகிழ்ச்சி', 'Nice to meet you')
+      ] },
+    { id: 'questions', name: 'Question Words', ml: 'ചോദ്യങ്ങൾ', kind: 'word',
+      tip: 'Question words let you ask anything. Learn these eight and you can start any conversation.',
+      bridge: 'എന്ത് is என்ன, ആര് is யார், എവിടെ is எங்கே, എപ്പോൾ is எப்போது, എത്ര is எத்தனை / எவ்வளவு.',
+      items: [
+        W('എന്ത്', 'enthu', 'என்ன', 'What'),
+        W('ആര്', 'aaru', 'யார்', 'Who'),
+        W('എവിടെ', 'evide', 'எங்கே', 'Where'),
+        W('എപ്പോൾ', 'eppol', 'எப்போது', 'When'),
+        W('എന്തുകൊണ്ട്', 'enthukondu', 'ஏன்', 'Why'),
+        W('എങ്ങനെ', 'engane', 'எப்படி', 'How'),
+        W('എത്ര', 'ethra', 'எவ்வளவு', 'How much / How many'),
+        W('ഏത്', 'ethu', 'எது', 'Which')
+      ] },
+    { id: 'actions', name: 'Action Words', ml: 'ക്രിയകൾ', kind: 'word',
+      tip: 'These are polite request forms ending in ഊ. Add them to a noun and you can ask for things: വെള്ളം തരൂ means give me water.',
+      bridge: 'The ending ഊ (oo) is like the polite ending in Tamil commands such as வாருங்கள்.',
+      items: [
+        W('വരൂ', 'varoo', 'வாருங்கள்', 'Come'),
+        W('പോകൂ', 'pokoo', 'போங்கள்', 'Go'),
+        W('ഇരിക്കൂ', 'irikkoo', 'உட்காருங்கள்', 'Sit'),
+        W('കഴിക്കൂ', 'kazhikkoo', 'சாப்பிடுங்கள்', 'Eat'),
+        W('കുടിക്കൂ', 'kudikkoo', 'குடியுங்கள்', 'Drink'),
+        W('നോക്കൂ', 'nokkoo', 'பாருங்கள்', 'Look'),
+        W('പറയൂ', 'parayoo', 'சொல்லுங்கள்', 'Say / Tell'),
+        W('കേൾക്കൂ', 'kelkkoo', 'கேளுங்கள்', 'Listen'),
+        W('വായിക്കൂ', 'vaayikkoo', 'படியுங்கள்', 'Read'),
+        W('എഴുതൂ', 'ezhuthoo', 'எழுதுங்கள்', 'Write')
+      ] },
+    { id: 'sentences', name: 'Everyday Sentences', ml: 'ദിവസേനയുള്ള വാക്യങ്ങൾ', kind: 'sentence',
+      tip: 'Speak these in a real shop, at home or on the phone. Using one sentence in real life teaches more than reading it ten times.',
+      bridge: 'Many sentences have the same word order as Tamil. Only the words change.',
+      items: [
+        W('എനിക്ക് മലയാളം കുറച്ച് അറിയാം', 'enikku malayaalam kurachu ariyaam', 'எனக்கு மலையாளம் கொஞ்சம் தெரியும்', 'I know a little Malayalam'),
+        W('മനസ്സിലായില്ല', 'manassilaayilla', 'புரியவில்லை', 'I did not understand'),
+        W('ഒന്നുകൂടി പറയാമോ?', 'onnukoodi parayaamo?', 'இன்னொரு முறை சொல்ல முடியுமா?', 'Can you say it once more?'),
+        W('പതുക്കെ പറയൂ', 'pathukke parayoo', 'மெதுவாக சொல்லுங்கள்', 'Please speak slowly'),
+        W('ഇതിന് എത്ര രൂപയാണ്?', 'ithinu ethra roopayaanu?', 'இதற்கு எவ்வளவு ரூபாய்?', 'How much is this?'),
+        W('വെള്ളം തരൂ', 'vellam tharoo', 'தண்ணீர் கொடுங்கள்', 'Please give me water'),
+        W('എനിക്ക് വിശക്കുന്നു', 'enikku vishakkunnu', 'எனக்கு பசிக்கிறது', 'I am hungry'),
+        W('എനിക്ക് ദാഹിക്കുന്നു', 'enikku daahikkunnu', 'எனக்கு தாகமாக உள்ளது', 'I am thirsty'),
+        W('എനിക്ക് ഇഷ്ടമാണ്', 'enikku ishtamaanu', 'எனக்கு பிடிக்கும்', 'I like it'),
+        W('ബസ് സ്റ്റാൻഡ് എവിടെയാണ്?', 'bas stand evideyaanu?', 'பேருந்து நிலையம் எங்கே?', 'Where is the bus stand?'),
+        W('നാളെ കാണാം', 'naale kaanaam', 'நாளை பார்க்கலாம்', 'See you tomorrow'),
+        W('എനിക്ക് സഹായം വേണം', 'enikku sahaayam venam', 'எனக்கு உதவி வேண்டும்', 'I need help')
+      ] }
+  ] }
+];
+
+var TOPICS = [];
+LEVELS.forEach(function (lv) {
+  lv.topics.forEach(function (t) {
+    t.level = lv; t.index = TOPICS.length; TOPICS.push(t);
+    t.items.forEach(function (it, i) { it.key = t.id + ':' + i; it.topic = t; });
+  });
+});
+function topicById(id) { return TOPICS.filter(function (t) { return t.id === id; })[0]; }
+function itemByKey(k) { var t = topicById(k.split(':')[0]); return t ? t.items[+k.split(':')[1]] : null; }
+function target(it) { return it.letter ? it.w : it; }
+function voiceItems(t) { return t.items.filter(function (it) { return !it.letter || it.w; }); }
+
+
+/* ---------- ALPHABET CHART ---------- */
+function AL(g, rom, ta, en, say, w) { return { g: g, rom: rom, ta: ta, en: en, say: say || g, w: w ? { ml: w[0], rom: w[1], ta: w[2], en: w[3] } : null }; }
+function fromTopic(id, a, b) { return topicById(id).items.slice(a, b).map(function (it) { return AL(it.ml, it.rom, it.ta, it.en, it.ml, it.w ? [it.w.ml, it.w.rom, it.w.ta, it.w.en] : null); }); }
+var ALPHA = [
+  { id: 'vow', name: 'Vowels', ml: 'സ്വരങ്ങൾ', note: 'The first 13 are used every day. The last three are old Sanskrit vowels you will almost never see.', items: fromTopic('vowels', 0, 13).concat([
+    AL('ഌ', 'lu', 'லு', 'old Sanskrit vowel, almost never used'), AL('ൠ', 'roo', 'ரூ', 'old Sanskrit vowel, almost never used'), AL('ൡ', 'loo', 'லூ', 'old Sanskrit vowel, almost never used')]) },
+  { id: 'marks', name: 'Sound marks', ml: 'അനുസ്വാരം, വിസർഗ്ഗം', note: 'Two endings that join a vowel. അം adds a soft "m". അഃ adds a breathy "h".', items: [
+    AL('അം', 'am', 'அம்', 'anusvaaram, ends with a soft "m"', 'അം', ['മലയാളം', 'malayaalam', 'மலையாளம்', 'Malayalam']),
+    AL('അഃ', 'ah', 'அஃ', 'visargam, ends with a breathy "h"', 'അഃ', ['ദുഃഖം', 'duhkham', 'துக்கம்', 'sorrow'])] },
+  { id: 'ka', name: 'Consonants: Ka group', ml: 'ക വർഗ്ഗം', note: 'Each group has five letters: plain, breathy, soft, soft breathy and nasal.', items: fromTopic('cons1', 0, 5) },
+  { id: 'cha', name: 'Consonants: Cha group', ml: 'ച വർഗ്ഗം', items: fromTopic('cons1', 5, 10) },
+  { id: 'ta', name: 'Consonants: Ta group', ml: 'ട വർഗ്ഗം', note: 'Tongue curled back, the same as Tamil ட ண.', items: fromTopic('cons2', 0, 5) },
+  { id: 'tha', name: 'Consonants: Tha group', ml: 'ത വർഗ്ഗം', note: 'Tongue on the teeth, the same as Tamil த ந.', items: fromTopic('cons2', 5, 10) },
+  { id: 'pa', name: 'Consonants: Pa group', ml: 'പ വർഗ്ഗം', note: 'Made with the lips.', items: fromTopic('cons3', 0, 5) },
+  { id: 'oth', name: 'Other consonants', ml: 'മറ്റ് വ്യഞ്ജനങ്ങൾ', note: 'Together with the five groups above, this makes all 36 consonants.', items: fromTopic('cons3', 5, 9).concat(fromTopic('cons4', 0, 7)) },
+  { id: 'signs', name: 'Vowel signs', ml: 'സ്വരചിഹ്നങ്ങൾ', note: 'A vowel sign attaches to a consonant. Here they are shown on ക. The same signs work on every consonant.', items: [
+    AL('കാ', 'kaa', 'கா', 'sign ാ makes the long "aa"'), AL('കി', 'ki', 'கி', 'sign ി makes short "i"'), AL('കീ', 'kee', 'கீ', 'sign ീ makes long "ee"'),
+    AL('കു', 'ku', 'கு', 'sign ു makes short "u"'), AL('കൂ', 'koo', 'கூ', 'sign ൂ makes long "oo"'), AL('കൃ', 'kru', 'க்ரு', 'sign ൃ makes "ru"'),
+    AL('കെ', 'ke', 'கெ', 'sign െ makes short "e", written before the letter'), AL('കേ', 'kae', 'கே', 'sign േ makes long "ae", written before the letter'),
+    AL('കൈ', 'kai', 'கை', 'sign ൈ makes "ai", written before the letter'), AL('കൊ', 'ko', 'கொ', 'sign ൊ makes short "o", wraps around the letter'),
+    AL('കോ', 'koh', 'கோ', 'sign ോ makes long "o", wraps around the letter'), AL('കൗ', 'kau', 'கௌ', 'sign ൗ makes "au"')] },
+  { id: 'chillu', name: 'Chillu letters', ml: 'ചില്ലക്ഷരങ്ങൾ', note: 'Pure consonants with no vowel. They usually end a word.', items: [
+    AL('ൻ', 'n', 'ன்', 'chillu "n"', 'അവൻ', ['അവൻ', 'avan', 'அவன்', 'he']), AL('ൺ', 'N', 'ண்', 'chillu "N", tongue curled back', 'കൺ', ['കൺ', 'kan', 'கண்', 'eye (poetic form)']),
+    AL('ർ', 'r', 'ர்', 'chillu "r"', 'അവർ', ['അവർ', 'avar', 'அவர்கள்', 'they']), AL('ൽ', 'l', 'ல்', 'chillu "l"', 'പാൽ', ['പാൽ', 'paal', 'பால்', 'milk']),
+    AL('ൾ', 'L', 'ள்', 'chillu "L"', 'അവൾ', ['അവൾ', 'aval', 'அவள்', 'she']), AL('ൿ', 'k', 'க்', 'chillu "k", very rare')] },
+  { id: 'conj', name: 'Joined letters', ml: 'കൂട്ടക്ഷരങ്ങൾ', note: 'Two or more consonants joined together. These are the common ones.', items: [
+    AL('ക്ക', 'kka', 'க்க', 'double "k"', 'കാക്ക', ['കാക്ക', 'kaakka', 'காகம்', 'crow']), AL('ങ്ങ', 'ngnga', 'ங்ங', 'double "ng"', 'തേങ്ങ', ['തേങ്ങ', 'thenga', 'தேங்காய்', 'coconut']),
+    AL('ച്ച', 'ccha', 'ச்ச', 'double "ch"', 'പച്ച', ['പച്ച', 'pacha', 'பச்சை', 'green']), AL('ഞ്ഞ', 'njnja', 'ஞ்ஞ', 'double "nj"', 'പഞ്ഞി', ['പഞ്ഞി', 'panji', 'பஞ்சு', 'cotton']),
+    AL('ട്ട', 'tta', 'ட்ட', 'double "T"', 'മുട്ട', ['മുട്ട', 'mutta', 'முட்டை', 'egg']), AL('ണ്ണ', 'nna', 'ண்ண', 'double "N"', 'കണ്ണ്', ['കണ്ണ്', 'kannu', 'கண்', 'eye']),
+    AL('ത്ത', 'ttha', 'த்த', 'double "t"', 'പത്ത്', ['പത്ത്', 'pathu', 'பத்து', 'ten']), AL('ന്ന', 'nna', 'ன்ன', 'double "n"', 'ഒന്ന്', ['ഒന്ന്', 'onnu', 'ஒன்று', 'one']),
+    AL('പ്പ', 'ppa', 'ப்ப', 'double "p"', 'അപ്പം', ['അപ്പം', 'appam', 'அப்பம்', 'appam, rice pancake']), AL('മ്മ', 'mma', 'ம்ம', 'double "m"', 'അമ്മ', ['അമ്മ', 'amma', 'அம்மா', 'mother']),
+    AL('ല്ല', 'lla', 'ல்ல', 'double "l"', 'ഇല്ല', ['ഇല്ല', 'illa', 'இல்லை', 'no']), AL('ള്ള', 'lla', 'ள்ள', 'double "L"', 'വെള്ളം', ['വെള്ളം', 'vellam', 'தண்ணீர்', 'water']),
+    AL('യ്യ', 'yya', 'ய்ய', 'double "y"', 'അയ്യോ', ['അയ്യോ', 'ayyo', 'ஐயோ', 'oh no']), AL('വ്വ', 'vva', 'வ்வ', 'double "v"', 'ചൊവ്വ', ['ചൊവ്വ', 'chovva', 'செவ்வாய்', 'Tuesday']),
+    AL('ന്ത', 'ntha', 'ந்த', '"n" then "th"', 'സന്തോഷം', ['സന്തോഷം', 'santhosham', 'மகிழ்ச்சி', 'happiness']), AL('ണ്ട', 'nda', 'ண்ட', '"N" then "T"', 'ഉണ്ട്', ['ഉണ്ട്', 'undu', 'உண்டு', 'there is']),
+    AL('മ്പ', 'mpa', 'ம்ப', '"m" then "p"', 'ഒമ്പത്', ['ഒമ്പത്', 'ombathu', 'ஒன்பது', 'nine']), AL('ഞ്ച', 'ncha', 'ஞ்ச', '"nj" then "ch"', 'അഞ്ച്', ['അഞ്ച്', 'anchu', 'ஐந்து', 'five']),
+    AL('ന്റ', 'nra', 'ன்ற', '"n" then "rra"', 'എന്റെ', ['എന്റെ', 'ente', 'என்', 'my']), AL('ക്ഷ', 'ksha', 'க்ஷ', '"k" then "sh"', 'പക്ഷി', ['പക്ഷി', 'pakshi', 'பறவை', 'bird']),
+    AL('ത്ര', 'thra', 'த்ர', '"t" then "r"', 'ചിത്രം', ['ചിത്രം', 'chithram', 'படம்', 'picture']), AL('ശ്ര', 'shra', 'ஶ்ர', '"sh" then "r"', 'ശ്രീ', ['ശ്രീ', 'shree', 'ஸ்ரீ', 'Shree'])] },
+  { id: 'num', name: 'Numbers', ml: 'അക്കങ്ങൾ', note: 'Malayalam has its own digits. Today people mostly write 0 to 9, but you will see these on old books and temples.', items: [
+    AL('൦', '0', 'பூஜ்யம்', 'zero, poojyam', 'പൂജ്യം'), AL('൧', '1', 'ஒன்று', 'one, onnu', 'ഒന്ന്'), AL('൨', '2', 'இரண்டு', 'two, randu', 'രണ്ട്'),
+    AL('൩', '3', 'மூன்று', 'three, moonnu', 'മൂന്ന്'), AL('൪', '4', 'நான்கு', 'four, naalu', 'നാല്'), AL('൫', '5', 'ஐந்து', 'five, anchu', 'അഞ്ച്'),
+    AL('൬', '6', 'ஆறு', 'six, aaru', 'ആറ്'), AL('൭', '7', 'ஏழு', 'seven, ezhu', 'ഏഴ്'), AL('൮', '8', 'எட்டு', 'eight, ettu', 'എട്ട്'),
+    AL('൯', '9', 'ஒன்பது', 'nine, ombathu', 'ഒമ്പത്')] }
+];
+function alphaItem(k) { var p = k.split(':'), s = ALPHA.filter(function (x) { return x.id === p[0]; })[0]; return s ? s.items[+p[1]] : null; }
+var ALPHA_TOTAL = ALPHA.reduce(function (n, s) { return n + s.items.length; }, 0);
+var LAMP = '<svg class="lamp" viewBox="0 0 64 96" aria-hidden="true" fill="currentColor"><path d="M32 4c5 7 6 11 0 17-6-6-5-10 0-17z"/><path d="M20 24h24l-4 7H24z"/><rect x="29" y="31" width="6" height="40"/><circle cx="32" cy="58" r="4.5"/><path d="M12 46h40v3H12z"/><path d="M8 40h10l-2 6H10z"/><path d="M46 40h10l-2 6h-6z"/><path d="M16 90h32l-5-19H21z"/></svg>';
+
+/* ---------- speech matching ---------- */
+function norm(s) {
+  s = String(s || '').normalize('NFC').toLowerCase().replace(/[‌‍]/g, '');
+  var chillu = { 'ൻ': 'ന്', 'ൺ': 'ണ്', 'ർ': 'ര്', 'ൽ': 'ല്', 'ൾ': 'ള്', 'ൿ': 'ക്' };
+  s = s.replace(/[ൻൺർൽൾൿ]/g, function (c) { return chillu[c]; });
+  var lv = { 'ീ': 'ി', 'ൂ': 'ു', 'േ': 'െ', 'ോ': 'ൊ', 'ഈ': 'ഇ', 'ഊ': 'ഉ', 'ഏ': 'എ', 'ഓ': 'ഒ', 'ം': 'മ' };
+  s = s.replace(/[ീൂേോഈഊഏഓം]/g, function (c) { return lv[c]; });
+  s = s.replace(/്/g, '');
+  return s.replace(/[^\p{L}\p{M}\p{N}]/gu, '');
+}
+function lev(a, b) {
+  var m = a.length, n = b.length, i, j;
+  if (!m) return n; if (!n) return m;
+  var p = []; for (j = 0; j <= n; j++) p[j] = j;
+  for (i = 1; i <= m; i++) {
+    var c = [i];
+    for (j = 1; j <= n; j++) c[j] = Math.min(p[j] + 1, c[j - 1] + 1, p[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    p = c;
+  }
+  return p[n];
+}
+function sim(a, b) { if (!a || !b) return 0; return 1 - lev(a, b) / Math.max(a.length, b.length); }
+function matchScore(said, t) {
+  var s = norm(said); if (!s) return 0;
+  var cands = [t.ml, t.rom].concat(t.alts || []), best = 0;
+  cands.forEach(function (c) { var v = sim(s, norm(c)); if (v > best) best = v; });
+  return best;
+}
+/*--UI--*/
+/* ---------- STATE ---------- */
+var LSKEY = 'malayalam-mitram-v1';
+function blank() { return { xp: 0, learned: {}, quiz: {}, voice: {}, done: {}, daily: {}, act: {}, miss: {}, qa: { a: 0, c: 0 }, log: [], unlockAll: false, auto: false, savedAt: 0 }; }
+var S = blank(), storeOK = true;
+function loadLocal() { try { var r = localStorage.getItem(LSKEY); if (r) S = Object.assign(blank(), JSON.parse(r)); } catch (e) { storeOK = false; } }
+function saveLocal() { try { localStorage.setItem(LSKEY, JSON.stringify(S)); } catch (e) { storeOK = false; } }
+var dbDoc = null, dbBusy = false, dbDirty = false, dbTimer = null;
+function queueDb() { if (!dbDoc) return; dbDirty = true; clearTimeout(dbTimer); dbTimer = setTimeout(flushDb, 1500); }
+function flushDb() {
+  if (!dbDoc || dbBusy || !dbDirty) return;
+  dbBusy = true; dbDirty = false;
+  Promise.resolve().then(function () { return dbDoc.set({ state: JSON.stringify(S) }); }).catch(function () { }).then(function () { dbBusy = false; if (dbDirty) queueDb(); });
+}
+function save() { S.savedAt = Date.now(); saveLocal(); queueDb(); }
+
+function pad(n) { return String(n).padStart(2, '0'); }
+function dayKey(off) { var d = new Date(); d.setDate(d.getDate() - off); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+function today() { return dayKey(0); }
+function addAct(n) { var t = today(); S.act[t] = (S.act[t] || 0) + n; }
+function streak() { var s = 0, o = S.act[today()] > 0 ? 0 : 1; while (S.act[dayKey(o)] > 0) { s++; o++; } return s; }
+function award(n) { S.xp += n; }
+function addLog(text) { S.log.unshift({ d: today(), t: text }); S.log = S.log.slice(0, 12); }
+function isUnlocked(t) { return S.unlockAll || t.index === 0 || !!S.done[TOPICS[t.index - 1].id]; }
+function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
+
+/* ---------- ICONS ---------- */
+var ICON = {
+  mic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg>',
+  spk: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>',
+  lock: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+  check: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'
+};
+
+/* ---------- SPEECH OUT (optional) ---------- */
+var ttsOK = false;
+function checkTts() { try { ttsOK = !!(window.speechSynthesis && speechSynthesis.getVoices().some(function (v) { return /^ml/i.test(v.lang); })); } catch (e) { ttsOK = false; } }
+function voiceCount() { try { return speechSynthesis.getVoices().length; } catch (e) { return 0; } }
+var toastT = null;
+function toast(msg) { var t = document.getElementById('toast'); if (!t) return; t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { t.hidden = true; }, 4500); }
+function speak(text, slow) {
+  if (!window.speechSynthesis || typeof SpeechSynthesisUtterance === 'undefined') { toast('Sound is not supported in this browser.'); return; }
+  checkTts();
+  try {
+    var u = new SpeechSynthesisUtterance(text); u.lang = 'ml-IN'; u.rate = slow ? 0.5 : 0.85;
+    var v = speechSynthesis.getVoices().filter(function (x) { return /^ml/i.test(x.lang); })[0]; if (v) u.voice = v;
+    u.onerror = function (ev) { if (ev && ev.error && ev.error !== 'canceled' && ev.error !== 'interrupted') toast('Could not play the sound on this device.'); };
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+    if (!ttsOK && voiceCount() > 0) toast('No Malayalam voice found on this device. Add Malayalam in your phone\'s Text-to-speech settings for clear sound.');
+  } catch (e) { toast('Could not play the sound on this device.'); }
+}
+function spkBtn(text, label, slow, cls) { label = label || 'Hear it'; return '<button class="btn ' + (cls || 'ghost') + '" data-act="speak" data-text="' + esc(text) + '"' + (slow ? ' data-slow="1"' : '') + ' aria-label="' + esc(label) + '">' + ICON.spk + esc(label) + '</button>'; }
+function spkDot(text) { return '<button class="spk" data-act="speak" data-text="' + esc(text) + '" aria-label="Hear it">' + ICON.spk + '</button>'; }
+
+/* ---------- VIEW STATE ---------- */
+var view = { n: 'home' }, sess = {}, dq = null;
+var dict = null, mlBad = false, dictMsg = '';
+var vs = { state: 'idle', partial: '', finals: '', evaluated: false, timer: null };
+var app = document.getElementById('app');
+
+function go(h) { if (location.hash === '#' + h) route(); else location.hash = h; }
+function route() {
+  var h = location.hash.replace('#', '');
+  if (h.indexOf('t-') === 0) {
+    var t = topicById(h.slice(2));
+    if (t && isUnlocked(t)) { view = { n: 'topic', id: t.id, mode: 'lesson' }; sess = { lesson: { i: 0 } }; render(true); return; }
+  }
+  view = { n: h === 'learn' ? 'learn' : h === 'daily' ? 'daily' : h === 'dashboard' ? 'dashboard' : h === 'letters' ? 'letters' : 'home' };
+  if (view.n === 'daily') dq = null;
+  render(true);
+}
+window.addEventListener('hashchange', route);
+
+/* ---------- QUIZ ENGINE ---------- */
+function optHtml(it, type) {
+  if (type === 'ml2ta') return '<span class="ta">' + esc(it.ta) + '</span><span class="small muted">' + esc(it.en) + '</span>';
+  if (type === 'ta2ml') return '<span class="ml">' + esc(it.ml) + '</span>';
+  if (type === 'ml2rom') return '<span class="rom">' + esc(it.rom) + '</span>';
+  return '<span class="ml">' + esc(it.ml) + '</span>';
+}
+function makeQ(item, pool) {
+  var types = item.letter ? ['ml2rom', 'rom2ml'] : ['ml2ta', 'ta2ml'];
+  var type = types[Math.floor(Math.random() * 2)];
+  var same = pool.filter(function (x) { return x.key !== item.key && !!x.letter === !!item.letter && x.ml !== item.ml && x.ta !== item.ta && x.en !== item.en && x.rom !== item.rom; });
+  var opts = shuffle(shuffle(same).slice(0, 3).concat([item]));
+  return { item: item, type: type, opts: opts, picked: null };
+}
+function promptHtml(q) {
+  var it = q.item;
+  if (q.type === 'ml2ta') return '<div class="label">What does this mean?</div><div class="glyph ' + (it.ml.length > 12 ? 'sent' : 'word') + '">' + esc(it.ml) + '</div><div class="rom">' + esc(it.rom) + '</div>';
+  if (q.type === 'ta2ml') return '<div class="label">Pick the Malayalam</div><div class="ta" style="font-size:1.6rem;font-weight:700">' + esc(it.ta) + '</div><div class="muted">' + esc(it.en) + '</div>';
+  if (q.type === 'ml2rom') return '<div class="label">Which sound is this?</div><div class="glyph">' + esc(it.ml) + '</div>';
+  return '<div class="label">Pick the letter for this sound</div><div class="rom" style="font-size:2.6rem">' + esc(it.rom) + '</div><div class="muted small">Tamil: ' + esc(it.ta) + '</div>';
+}
+function quizHtml(qz, kind) {
+  var q = qz.qs[qz.i], picked = q.picked !== null;
+  var h = '<div class="q"><div class="row"><span class="label">Question ' + (qz.i + 1) + ' of ' + qz.qs.length + '</span><span class="pill gold">' + qz.score + ' correct</span></div>';
+  h += '<div class="bar-track"><div class="bar-fill gold" style="width:' + Math.round(qz.i / qz.qs.length * 100) + '%"></div></div>';
+  h += '<div class="qprompt">' + promptHtml(q) + '</div><div class="opts">';
+  q.opts.forEach(function (o, idx) {
+    var cls = 'opt';
+    if (picked) { if (o.key === q.item.key) cls += ' right'; else if (idx === q.picked) cls += ' wrong'; }
+    h += '<button class="' + cls + '" data-act="pick" data-i="' + idx + '" data-kind="' + kind + '"' + (picked ? ' disabled' : '') + '>' + optHtml(o, q.type) + '</button>';
+  });
+  h += '</div>';
+  if (picked) {
+    var ok = q.opts[q.picked].key === q.item.key, it = q.item;
+    h += '<div class="fb ' + (ok ? 'good' : 'bad') + '"><b>' + (ok ? 'Correct' : 'Not this time') + '</b><span><span class="ml" style="font-size:1.3rem;font-weight:700">' + esc(it.ml) + '</span> · ' + esc(it.rom) + ' · <span class="ta">' + esc(it.ta) + '</span> · ' + esc(it.en) + '</span>' + spkBtn(it.ml, 'Hear it') + '</div>';
+    h += '<button class="btn" data-act="qnext" data-kind="' + kind + '">' + (qz.i + 1 >= qz.qs.length ? 'See my score' : 'Next question') + '</button>';
+  }
+  return h + '</div>';
+}
+function pickAnswer(qz, idx) {
+  var q = qz.qs[qz.i]; if (q.picked !== null) return;
+  q.picked = idx; var ok = q.opts[idx].key === q.item.key;
+  S.qa.a++; addAct(1);
+  if (ok) { qz.score++; S.qa.c++; award(10); if (S.miss[q.item.key]) S.miss[q.item.key]--; }
+  else S.miss[q.item.key] = (S.miss[q.item.key] || 0) + 1;
+  save();
+}
+
+/* ---------- DASHBOARD ---------- */
+function dashboardView() {
+  var t = today(), dday = S.daily[t];
+  var doneN = TOPICS.filter(function (x) { return S.done[x.id]; }).length;
+  var learnedItems = 0; TOPICS.forEach(function (x) { if (S.learned[x.id]) learnedItems += x.items.length; });
+  var next = TOPICS.filter(function (x) { return !S.done[x.id] && isUnlocked(x); })[0];
+  var acc = S.qa.a ? Math.round(S.qa.c / S.qa.a * 100) : null;
+  var h = '<section class="hero"><svg class="lamp" viewBox="0 0 64 96" aria-hidden="true" fill="currentColor"><path d="M32 4c5 7 6 11 0 17-6-6-5-10 0-17z"/><path d="M20 24h24l-4 7H24z"/><rect x="29" y="31" width="6" height="40"/><circle cx="32" cy="58" r="4.5"/><path d="M12 46h40v3H12z"/><path d="M8 40h10l-2 6H10z"/><path d="M46 40h10l-2 6h-6z"/><path d="M16 90h32l-5-19H21z"/></svg><div class="greet">നമസ്കാരം</div><div class="sub"><span class="ta">வணக்கம்</span> · Welcome back. Small steps every day.</div><div class="kasavu"></div></section>';
+  h += '<section class="stats">' +
+    '<div class="stat"><b>' + streak() + '</b><span>day streak</span></div>' +
+    '<div class="stat"><b>' + S.xp + '</b><span>points earned</span></div>' +
+    '<div class="stat"><b>' + doneN + ' / ' + TOPICS.length + '</b><span>topics finished</span></div>' +
+    '<div class="stat"><b>' + learnedItems + '</b><span>letters and words learned</span></div>' +
+    '<div class="stat"><b>' + (acc === null ? 'None yet' : acc + '%') + '</b><span>quiz accuracy</span></div></section>';
+  h += '<section class="grid2">';
+  h += '<div class="card ' + (dday ? '' : 'gold') + ' stack"><span class="label" style="color:inherit">Today\'s quiz</span>' +
+    (dday ? '<h3>Done today: ' + dday.s + ' of ' + dday.t + '</h3><p class="muted">Come back tomorrow for a new one, or practise again now.</p><div><a class="btn ghost" href="#daily">Play again</a></div>'
+      : '<h3>Your daily quiz is waiting</h3><p>Ten questions mixed from everything you have learned.</p><div><a class="btn gold" href="#daily">Start daily quiz</a></div>') + '</div>';
+  h += '<div class="card stack"><span class="label">Next step</span>' + (next
+    ? '<h3>' + esc(next.name) + ' <span class="ml">· ' + esc(next.ml) + '</span></h3><p class="muted">' + esc(next.level.name) + ': ' + esc(next.level.title) + '. ' + (S.learned[next.id] ? 'Lesson done. Take the voice test to finish it.' : 'Start with the lesson.') + '</p><div><a class="btn" href="#t-' + next.id + '">' + (S.learned[next.id] ? 'Continue' : 'Start lesson') + '</a></div>'
+    : '<h3>All topics finished</h3><p class="muted">Excellent. Keep the daily quiz going to stay sharp.</p>') + '</div></section>';
+
+  /* levels */
+  h += '<section class="card stack"><h2>Your levels</h2>';
+  LEVELS.forEach(function (lv) {
+    var n = lv.topics.filter(function (x) { return S.done[x.id]; }).length, pc = Math.round(n / lv.topics.length * 100);
+    h += '<div class="stack" style="gap:6px"><div class="row"><b>' + esc(lv.name) + ': ' + esc(lv.title) + ' <span class="ml muted">' + esc(lv.ml) + '</span></b><span class="small muted">' + n + ' of ' + lv.topics.length + ' topics</span></div><div class="bar-track"><div class="bar-fill" style="width:' + pc + '%"></div></div></div>';
+  });
+  h += '</section>';
+
+  /* week */
+  var days = [], max = 1, i;
+  for (i = 6; i >= 0; i--) { var k = dayKey(i), d = new Date(); d.setDate(d.getDate() - i); var c = S.act[k] || 0; if (c > max) max = c; days.push({ c: c, l: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getDay()] }); }
+  h += '<section class="card stack"><div class="row"><h2>This week</h2><span class="small muted">answers given per day</span></div><div class="week">';
+  days.forEach(function (d) { h += '<div><i class="' + (d.c ? '' : 'zero') + '" style="height:' + Math.max(4, Math.round(d.c / max * 100)) + '%"></i><b>' + d.c + '</b><span>' + d.l + '</span></div>'; });
+  h += '</div></section>';
+
+  /* mastery */
+  h += '<section class="card stack"><h2>Topic progress</h2><div class="scroll"><table class="tbl"><thead><tr><th>Topic</th><th>Lesson</th><th>Quiz</th><th>Voice test</th></tr></thead><tbody>';
+  TOPICS.forEach(function (x) {
+    h += '<tr><td><b>' + esc(x.name) + '</b></td><td>' + (S.learned[x.id] ? '<span class="pill good">Done</span>' : '<span class="pill">Not yet</span>') + '</td><td>' + (S.quiz[x.id] !== undefined ? S.quiz[x.id] + '%' : '<span class="muted">-</span>') + '</td><td>' + (S.voice[x.id] !== undefined ? S.voice[x.id] + '%' + (S.done[x.id] ? ' <span class="pill good">Passed</span>' : '') : '<span class="muted">-</span>') + '</td></tr>';
+  });
+  h += '</tbody></table></div></section>';
+
+  /* review */
+  var miss = Object.keys(S.miss).filter(function (k) { return S.miss[k] > 0 && itemByKey(k); }).sort(function (a, b) { return S.miss[b] - S.miss[a]; }).slice(0, 8);
+  h += '<section class="card stack"><h2>Words to review</h2>';
+  if (!miss.length) h += '<p class="muted">Nothing here yet. Words you get wrong in quizzes and voice tests appear here.</p>';
+  else { h += '<div class="chips">'; miss.forEach(function (k) { var it = itemByKey(k); h += '<div class="chip"><span class="ml">' + esc(it.ml) + '</span><span class="small">' + esc(it.rom) + '</span><span class="small ta muted">' + esc(it.ta) + '</span>' + spkDot(it.ml) + '</div>'; }); h += '</div>'; }
+  h += '</section>';
+
+  if (S.log.length) { h += '<section class="card stack"><h2>Recent activity</h2><div class="stack" style="gap:6px">'; S.log.slice(0, 6).forEach(function (l) { h += '<div class="row small"><span>' + esc(l.t) + '</span><span class="muted">' + esc(l.d) + '</span></div>'; }); h += '</div></section>'; }
+  return h;
+}
+
+
+/* ---------- HOME ---------- */
+function dayWords() { var a = []; TOPICS.forEach(function (t) { if (t.kind === 'word') a = a.concat(t.items); }); return a; }
+function dayLetters() { var a = []; TOPICS.forEach(function (t) { if (t.kind === 'letter') t.items.forEach(function (it) { if (it.w) a.push(it); }); }); return a; }
+function homeView() {
+  var dn = Math.floor(Date.now() / 86400000), ws = dayWords(), wd = ws[dn % ws.length], ls = dayLetters(), ld = ls[(dn * 3) % ls.length];
+  var dday = S.daily[today()], next = TOPICS.filter(function (x) { return !S.done[x.id] && isUnlocked(x); })[0];
+  var h = '<section class="hero">' + LAMP + '<div class="greet">നമസ്കാരം</div><div class="sub"><span class="ta">வணக்கம்</span> · Learn Malayalam a little every day.</div><div style="margin-top:14px">' + spkBtn('നമസ്കാരം', 'Hear it', false, 'gold') + '</div><div class="kasavu"></div></section>';
+  h += '<section class="stats"><div class="stat"><b>' + streak() + '</b><span>day streak</span></div><div class="stat"><b>' + S.xp + '</b><span>points earned</span></div></section>';
+  h += '<section class="card gold stack"><span class="label" style="color:inherit">Continue</span>' + (next
+    ? '<h3>' + esc(next.name) + ' <span class="ml">· ' + esc(next.ml) + '</span></h3><p>' + esc(next.level.name) + ': ' + esc(next.level.title) + '</p><div><a class="btn" href="#t-' + next.id + '">' + (S.learned[next.id] ? 'Take the voice test' : 'Start lesson') + '</a></div>'
+    : '<h3>All topics finished</h3><p>Excellent. Keep your daily quiz going.</p><div><a class="btn" href="#daily">Daily quiz</a></div>') + '</section>';
+  h += '<section class="grid2">' +
+    '<a class="card stack tilelink" href="#letters"><span class="ml" style="font-size:2rem;font-weight:800;color:var(--accent)">അ ആ ഇ ഈ</span><b>All letters</b><span class="small muted">' + ALPHA_TOTAL + ' letters and signs, tap to hear each one</span></a>' +
+    '<a class="card stack tilelink" href="#learn"><span class="ml" style="font-size:2rem;font-weight:800;color:var(--accent)">പഠിക്കാം</span><b>Learn</b><span class="small muted">Lessons, quizzes and voice tests</span></a>' +
+    '<a class="card stack tilelink" href="#daily"><span class="ml" style="font-size:2rem;font-weight:800;color:var(--accent)">ക്വിസ്</span><b>Daily quiz</b><span class="small muted">' + (dday ? 'Done today: ' + dday.s + ' of ' + dday.t : 'Ten questions are waiting') + '</span></a>' +
+    '<a class="card stack tilelink" href="#dashboard"><span class="ml" style="font-size:2rem;font-weight:800;color:var(--accent)">പുരോഗതി</span><b>Dashboard</b><span class="small muted">Your progress and words to review</span></a></section>';
+  h += '<section class="flash"><span class="label">Word of the day</span><div class="glyph word">' + esc(wd.ml) + '</div><div class="rom">' + esc(wd.rom) + '</div><div class="mean"><span class="ta">' + esc(wd.ta) + '</span><span class="muted small">' + esc(wd.en) + '</span></div><div class="row" style="justify-content:center;gap:8px">' + spkBtn(wd.ml, 'Hear it') + spkBtn(wd.ml, 'Slow', true) + '</div></section>';
+  h += '<section class="flash"><span class="label">Letter of the day</span><div class="glyph">' + esc(ld.ml) + '</div><div class="rom">' + esc(ld.rom) + '</div><div class="mean"><span class="ta">' + esc(ld.ta) + '</span><span class="muted small">' + esc(ld.en) + '</span></div><div class="example"><span class="ml">' + esc(ld.w.ml) + '</span><span><b>' + esc(ld.w.rom) + '</b> · <span class="ta">' + esc(ld.w.ta) + '</span> · ' + esc(ld.w.en) + '</span></div><div class="row" style="justify-content:center;gap:8px">' + spkBtn(ld.ml, 'Hear letter') + spkBtn(ld.w.ml, 'Hear word') + '</div></section>';
+  return h;
+}
+
+/* ---------- LETTERS ---------- */
+function lettersView() {
+  var h = '<div class="stack"><h2>Malayalam letters <span class="ml muted">അക്ഷരമാല</span></h2><p class="muted">All ' + ALPHA_TOTAL + ' letters, signs and digits. Tap any one to hear it and see its Tamil match.</p></div>';
+  ALPHA.forEach(function (sec) {
+    h += '<section class="stack"><div class="row"><h3>' + esc(sec.name) + ' <span class="ml muted">' + esc(sec.ml) + '</span></h3><span class="pill">' + sec.items.length + '</span></div>' + (sec.note ? '<p class="small muted">' + esc(sec.note) + '</p>' : '') + '<div class="tiles">';
+    sec.items.forEach(function (it, i) {
+      var k = sec.id + ':' + i;
+      h += '<button class="tile' + (view.sel === k ? ' sel' : '') + '" data-act="alpha" data-k="' + k + '" aria-label="' + esc(it.rom) + '"><span class="g">' + esc(it.g) + '</span><span class="small">' + esc(it.rom) + '</span><span class="tamil">' + esc(it.ta) + '</span></button>';
+    });
+    h += '</div></section>';
+  });
+  var it = view.sel ? alphaItem(view.sel) : null;
+  if (it) {
+    h += '<div class="spacer"></div><div class="sheet"><div class="big">' + esc(it.g) + '</div><div><div class="rom">' + esc(it.rom) + '</div><div><span class="ta" style="font-weight:700;font-size:1.3rem">' + esc(it.ta) + '</span> <span class="small muted">' + esc(it.en) + '</span></div>' +
+      (it.w ? '<div class="small"><span class="ml" style="font-weight:700">' + esc(it.w.ml) + '</span> · ' + esc(it.w.rom) + ' · ' + esc(it.w.en) + '</div>' : '') + '</div>' +
+      '<button class="spk" data-act="aclose" aria-label="Close">&times;</button><div class="acts">' + spkBtn(it.say, 'Hear it', false, 'sm') + spkBtn(it.say, 'Slow', true, 'ghost sm') + (it.w ? spkBtn(it.w.ml, 'Hear word', false, 'ghost sm') : '') + '</div></div>';
+  }
+  return h;
+}
+
+/* ---------- LEARN ---------- */
+function learnView() {
+  var h = '<div class="stack"><h2>Learn Malayalam, step by step</h2><p class="muted">Each topic has three steps: a lesson, a practice quiz, and a voice test where you speak Malayalam. Pass the voice test (60% or more) to unlock the next topic.</p></div>';
+  LEVELS.forEach(function (lv) {
+    h += '<section class="level stack"><h2>' + esc(lv.name) + ': ' + esc(lv.title) + ' <span class="ml muted" style="font-size:1.2rem">' + esc(lv.ml) + '</span></h2><p class="muted small">' + esc(lv.sub) + '</p><div class="grid2">';
+    lv.topics.forEach(function (t) {
+      var open = isUnlocked(t), tag = S.done[t.id] ? '<span class="pill good">Finished</span>' : !open ? '<span class="pill">' + ICON.lock.replace('class="icon"', 'class="icon" style="width:13px;height:13px;vertical-align:-2px"') + ' Locked</span>' : S.learned[t.id] ? '<span class="pill gold">Take voice test</span>' : '<span class="pill gold">New</span>';
+      var inner = '<div class="t1"><div><div class="tn">' + esc(t.name) + '</div><div class="tm">' + esc(t.ml) + '</div></div>' + tag + '</div><div class="meta"><span class="pill">' + t.items.length + ' ' + (t.kind === 'letter' ? 'letters' : t.kind === 'sentence' ? 'sentences' : 'words') + '</span>' +
+        (S.quiz[t.id] !== undefined ? '<span class="pill">Quiz ' + S.quiz[t.id] + '%</span>' : '') + (S.voice[t.id] !== undefined ? '<span class="pill">Voice ' + S.voice[t.id] + '%</span>' : '') + '</div>' +
+        (!open ? '<div class="small muted">Pass the voice test of ' + esc(TOPICS[t.index - 1].name) + ' to unlock.</div>' : '');
+      h += open ? '<a class="tcard" href="#t-' + t.id + '">' + inner + '</a>' : '<div class="tcard locked" aria-disabled="true">' + inner + '</div>';
+    });
+    h += '</div></section>';
+  });
+  h += '<p class="small muted"><button class="btn ghost" data-act="unlock">' + (S.unlockAll ? 'Lock topics in order again' : 'Unlock all topics') + '</button></p>';
+  return h;
+}
+
+/* ---------- TOPIC ---------- */
+function topicView() {
+  var t = topicById(view.id), m = view.mode;
+  var h = '<div class="crumb small"><a href="#learn">Learn</a><span class="muted">/</span><span>' + esc(t.level.name) + '</span></div>';
+  h += '<div class="stack" style="gap:2px"><h2>' + esc(t.name) + ' <span class="ml muted">' + esc(t.ml) + '</span></h2></div>';
+  h += '<div class="steps" role="tablist">' + [['lesson', '1. Lesson', 'Learn'], ['quiz', '2. Practice', 'Quiz'], ['voice', '3. Voice test', 'Speak']].map(function (s) {
+    return '<button role="tab" data-act="mode" data-m="' + s[0] + '" aria-selected="' + (m === s[0]) + '">' + s[1] + '<small>' + s[2] + '</small></button>';
+  }).join('') + '</div>';
+  if (m === 'lesson') h += lessonHtml(t);
+  else if (m === 'quiz') h += topicQuizHtml(t);
+  else h += voiceHtml(t);
+  return h;
+}
+function lessonHtml(t) {
+  var L0 = sess.lesson || (sess.lesson = { i: 0 }), it = t.items[L0.i], last = L0.i === t.items.length - 1;
+  var h = '<div class="card tip"><span class="label">Kerala-kids tip</span><p>' + esc(t.tip) + '</p><p class="muted"><b>Tamil bridge:</b> ' + esc(t.bridge) + '</p></div>';
+  h += '<div class="flash"><span class="label">' + (L0.i + 1) + ' of ' + t.items.length + '</span>';
+  h += '<div class="glyph ' + (it.letter ? '' : it.ml.length > 12 ? 'sent' : 'word') + '">' + esc(it.ml) + '</div><div class="rom">' + esc(it.rom) + '</div>';
+  if (it.letter) {
+    h += '<div class="mean"><span class="ta">' + esc(it.ta) + '</span><span class="muted small">' + esc(it.en) + '</span></div>';
+    if (it.w) h += '<div class="example"><span class="label">Example word</span><span class="ml">' + esc(it.w.ml) + '</span><span><b>' + esc(it.w.rom) + '</b> · <span class="ta">' + esc(it.w.ta) + '</span> · ' + esc(it.w.en) + '</span></div>';
+    else h += '<div class="example"><span class="small muted">A rare letter. It appears mostly in words borrowed from Sanskrit, so it has no example word in the voice test.</span></div>';
+  } else {
+    h += '<div class="mean"><span class="ta">' + esc(it.ta) + '</span><span class="muted">' + esc(it.en) + '</span></div>';
+  }
+  h += '<div class="row" style="justify-content:center;gap:8px">' + (it.letter ? spkBtn(it.ml, 'Hear letter') + (it.w ? spkBtn(it.w.ml, 'Hear word') : '') : spkBtn(it.ml, 'Hear it') + spkBtn(it.ml, 'Slow', true)) + '</div>';
+  h += '</div><div class="dots" aria-hidden="true">' + t.items.map(function (_, i) { return '<i class="' + (i < L0.i ? 'on' : i === L0.i ? 'cur' : '') + '"></i>'; }).join('') + '</div>';
+  h += '<div class="row"><button class="btn ghost" data-act="lprev"' + (L0.i === 0 ? ' disabled' : '') + '>Back</button>' + (last ? '<button class="btn gold" data-act="lfinish">Finish lesson</button>' : '<button class="btn" data-act="lnext">Next</button>') + '</div>';
+  h += '<label class="small muted" style="display:flex;gap:8px;align-items:center;justify-content:center"><input type="checkbox" data-act="auto"' + (S.auto ? ' checked' : '') + '> Play the sound automatically on each card</label>';
+  if (!ttsOK) h += '<p class="small muted">Tip: your device has no Malayalam voice for playback. Read the pronunciation under each word and say it aloud.</p>';
+  return h;
+}
+function startTopicQuiz(t) {
+  var n = Math.min(10, t.items.length), pool = t.items;
+  sess.quiz = { qs: shuffle(t.items).slice(0, n).map(function (it) { return makeQ(it, pool); }), i: 0, score: 0, done: false };
+}
+function topicQuizHtml(t) {
+  var qz = sess.quiz;
+  if (!qz) return '<div class="card stack"><h3>Practice quiz</h3><p class="muted">Up to 10 questions on ' + esc(t.name) + '. You earn 10 points for each correct answer.</p><div><button class="btn" data-act="qstart">Start quiz</button></div></div>';
+  if (qz.done) {
+    var pc = Math.round(qz.score / qz.qs.length * 100);
+    return '<div class="card stack" style="text-align:center;justify-items:center"><span class="label">Quiz result</span><div class="score">' + qz.score + ' / ' + qz.qs.length + '</div><p class="muted">' + (pc >= 80 ? 'Wonderful. You are ready for the voice test.' : pc >= 50 ? 'Good progress. One more round makes it stick.' : 'Go back to the lesson, then try again.') + '</p><div class="row"><button class="btn ghost" data-act="qstart">Try again</button><button class="btn" data-act="mode" data-m="voice">Go to voice test</button></div></div>';
+  }
+  return quizHtml(qz, 'topic');
+}
+
+/* ---------- VOICE TEST ---------- */
+function voiceMode() { return dict && !mlBad ? 'mic' : 'self'; }
+function startVoice(t) {
+  var items = shuffle(voiceItems(t)).slice(0, 8);
+  sess.voice = { items: items, i: 0, tries: 0, res: [], hint: false, verdict: null, done: false };
+  vs.finals = ''; vs.partial = ''; vs.evaluated = false; dictMsg = '';
+}
+function voiceHtml(t) {
+  var v = sess.voice;
+  if (!v) {
+    var h = '<div class="card stack"><h3>Voice test</h3><p>You will see the meaning in English and Tamil. Say it in Malayalam out loud. ' + voiceItems(t).length + ' items are available, and each test uses up to 8.</p>';
+    h += voiceMode() === 'mic' ? '<p class="small muted">Your voice is turned into text and compared with the Malayalam answer. You get two tries per item. Allow the microphone when asked.</p>' : '<p class="small muted"><b>Voice recognition is not available in this view.</b> You will say each answer aloud and mark yourself honestly. For automatic checking, open this page in desktop Chrome or Edge, signed in to claude.ai.</p>';
+    if (!S.learned[t.id]) h += '<p class="small muted">Tip: finish the lesson first so the answers feel familiar.</p>';
+    return h + '<div><button class="btn" data-act="vstart">Start voice test</button></div></div>';
+  }
+  if (v.done) {
+    var ok = v.res.filter(function (r) { return r && r.ok; }).length, pc = Math.round(ok / v.items.length * 100), pass = pc >= 60;
+    var h2 = '<div class="card stack" style="text-align:center;justify-items:center"><span class="label">Voice test result</span><div class="score">' + ok + ' / ' + v.items.length + '</div><p>' + (pass ? '<span class="pill good">Passed</span> ' + (S.done[t.id] ? 'Topic finished.' : '') : '<span class="pill gold">Not yet</span> You need 60% to pass.') + '</p>';
+    h2 += '<div class="res-list" style="width:100%;text-align:left">' + v.items.map(function (it, i) { var r = v.res[i] || {}, tg = target(it); return '<div class="res-row"><span class="pill ' + (r.ok ? 'good' : '') + '">' + (r.ok ? 'Right' : 'Retry') + '</span><span><span class="ml">' + esc(tg.ml) + '</span> <span class="small muted">' + esc(tg.rom) + ' · ' + esc(tg.en) + '</span></span></div>'; }).join('') + '</div>';
+    h2 += '<div class="row"><button class="btn ghost" data-act="vstart">Test again</button>' + (pass && t.index + 1 < TOPICS.length ? '<a class="btn" href="#t-' + TOPICS[t.index + 1].id + '">Next topic</a>' : '<a class="btn" href="#learn">Back to topics</a>') + '</div></div>';
+    return h2;
+  }
+  var it = v.items[v.i], tg = target(it), mode = voiceMode();
+  var h3 = '<div class="q"><div class="row"><span class="label">Item ' + (v.i + 1) + ' of ' + v.items.length + '</span></div><div class="bar-track"><div class="bar-fill gold" style="width:' + Math.round(v.i / v.items.length * 100) + '%"></div></div>';
+  h3 += '<div class="qprompt"><div class="label">Say this in Malayalam</div><div style="font-family:var(--font-display);font-size:1.8rem;font-weight:800">' + esc(tg.en) + '</div><div class="ta" style="font-size:1.5rem;font-weight:700">' + esc(tg.ta) + '</div>';
+  if (v.hint || v.verdict) h3 += '<div class="example" style="text-align:center;margin-top:6px"><span class="ml" style="font-size:2rem">' + esc(tg.ml) + '</span><b class="rom" style="font-size:1.1rem">' + esc(tg.rom) + '</b>' + spkBtn(tg.ml, 'Hear it') + '</div>';
+  h3 += '</div>';
+  var v2 = v.verdict;
+  if (!v2) {
+    h3 += '<div class="row" style="justify-content:center">' + (v.hint ? spkBtn(tg.ml) : '<button class="btn ghost" data-act="vhint">Show hint</button>') + '</div>';
+    if (mode === 'mic') {
+      h3 += '<div class="mic-wrap"><button class="mic' + (vs.state === 'listening' ? ' on' : '') + '" id="micbtn" data-act="mic" aria-label="Speak"' + (vs.state === 'starting' || vs.state === 'finishing' ? ' disabled' : '') + '>' + ICON.mic + '</button><div id="micstat" class="small muted">' + micLabel() + '</div><div class="live" id="live" aria-live="polite">' + esc(vs.finals + ' ' + vs.partial) + '</div>' + (dictMsg ? '<div class="fb bad small">' + esc(dictMsg) + '</div>' : '') + '</div>';
+    } else {
+      h3 += '<div class="card stack"><p>Say it aloud now. Then tell me how it went.</p><div class="row"><button class="btn" data-act="selfok">I said it right</button><button class="btn ghost" data-act="selfno">Need more practice</button></div></div>';
+    }
+  } else {
+    var good = v2.ok;
+    h3 += '<div class="fb ' + (good ? 'good' : 'bad') + '"><b>' + (good ? 'Well said' : v2.self ? 'Keep practising' : v2.said ? 'Not quite' : 'I did not hear anything') + '</b>' + (v2.said ? '<span>I heard: <span class="ml" style="font-weight:700">' + esc(v2.said) + '</span> (' + Math.round(v2.sim * 100) + '% match)</span>' : '') + '</div>';
+    if (good || v2.final) {
+      h3 += '<div class="row">' + (!good && !v2.self ? '<button class="btn ghost" data-act="vover">I said it right</button>' : '<span></span>') + '<button class="btn" data-act="vnext">' + (v.i + 1 >= v.items.length ? 'Finish test' : 'Next') + '</button></div>';
+    } else {
+      h3 += '<div class="row"><button class="btn" data-act="vretry">Try again</button></div>';
+    }
+  }
+  return h3 + '</div>';
+}
+function micLabel() { return vs.state === 'listening' ? 'Listening. Speak now, then pause.' : vs.state === 'starting' ? 'Getting ready' : vs.state === 'finishing' ? 'Checking what you said' : 'Tap the microphone and speak'; }
+function updateMic() {
+  var b = document.getElementById('micbtn'), s = document.getElementById('micstat'), l = document.getElementById('live');
+  if (b) { b.classList.toggle('on', vs.state === 'listening'); b.disabled = vs.state === 'starting' || vs.state === 'finishing'; }
+  if (s) s.textContent = micLabel();
+  if (l) l.textContent = (vs.finals + ' ' + vs.partial).trim();
+}
+function recordVoice(ok, said, sc, self, final) {
+  var v = sess.voice; v.verdict = { ok: ok, said: said, sim: sc, self: !!self, final: !!final };
+  if (ok || final) {
+    v.res[v.i] = { ok: ok, said: said }; addAct(1);
+    var it = v.items[v.i];
+    if (ok) { award(15); if (S.miss[it.key]) S.miss[it.key]--; } else S.miss[it.key] = (S.miss[it.key] || 0) + 1;
+    save();
+  }
+}
+function evaluateOnce() {
+  if (vs.evaluated || view.n !== 'topic' || view.mode !== 'voice' || !sess.voice || sess.voice.done || sess.voice.verdict) return;
+  vs.evaluated = true; clearTimeout(vs.timer);
+  var v = sess.voice, it = v.items[v.i], tg = target(it), said = (vs.finals || vs.partial || '').trim();
+  if (!said) { v.verdict = { ok: false, said: '', sim: 0, final: false }; v.tries++; if (v.tries >= 2) { recordVoice(false, '', 0, false, true); } render(); return; }
+  var sc = matchScore(said, tg), thr = it.topic.kind === 'sentence' ? 0.55 : 0.6, ok = sc >= thr;
+  v.tries++;
+  recordVoice(ok, said, sc, false, !ok && v.tries >= 2);
+  render();
+}
+function finishVoice(t) {
+  var v = sess.voice, ok = v.res.filter(function (r) { return r && r.ok; }).length, pc = Math.round(ok / v.items.length * 100);
+  v.done = true;
+  S.voice[t.id] = Math.max(S.voice[t.id] || 0, pc);
+  if (pc >= 60 && !S.done[t.id]) { S.done[t.id] = true; award(30); addLog('Passed the voice test: ' + t.name + ' (' + pc + '%)'); } else addLog('Voice test: ' + t.name + ' (' + pc + '%)');
+  save();
+}
+
+/* ---------- DAILY QUIZ ---------- */
+function learnedPool() { var p = []; TOPICS.forEach(function (t) { if (S.learned[t.id]) p = p.concat(t.items); }); return p; }
+function buildDaily() {
+  var pool = learnedPool(); if (pool.length < 5) return null;
+  var bag = [];
+  pool.forEach(function (it) { var w = 1 + 2 * (S.miss[it.key] || 0); for (var i = 0; i < w; i++) bag.push(it); });
+  var chosen = [], seen = {};
+  shuffle(bag).forEach(function (it) { if (chosen.length < 10 && !seen[it.key]) { seen[it.key] = 1; chosen.push(it); } });
+  return { qs: chosen.map(function (it) { return makeQ(it, pool); }), i: 0, score: 0, done: false };
+}
+function dailyView() {
+  var t = today();
+  if (!dq) {
+    var d = S.daily[t], pool = learnedPool();
+    var h = '<div class="stack"><h2>Daily quiz</h2><p class="muted">Ten questions, mixed from the topics you have already learned. Words you missed before come back more often.</p></div>';
+    if (pool.length < 5) return h + '<div class="card stack"><h3>Learn something first</h3><p class="muted">Finish at least one lesson, then your daily quiz unlocks.</p><div><a class="btn" href="#learn">Go to lessons</a></div></div>';
+    h += '<div class="card ' + (d ? '' : 'gold') + ' stack">' + (d ? '<h3>Today\'s best score: ' + d.s + ' of ' + d.t + '</h3><p class="muted">You can play again for extra practice. Your best score of the day is kept.</p>' : '<h3>Not played yet today</h3><p>Keep your streak alive with a short round.</p>') + '<div><button class="btn ' + (d ? '' : 'gold') + '" data-act="dstart">' + (d ? 'Play again' : 'Start daily quiz') + '</button></div></div>';
+    return h;
+  }
+  if (dq.done) {
+    var pc = Math.round(dq.score / dq.qs.length * 100);
+    return '<div class="card stack" style="text-align:center;justify-items:center"><span class="label">Daily quiz result</span><div class="score">' + dq.score + ' / ' + dq.qs.length + '</div><p class="muted">' + (pc >= 80 ? 'Excellent. Your Malayalam is growing.' : pc >= 50 ? 'Good work. Review the words below on your dashboard.' : 'Keep going. Repetition is how it sticks.') + '</p><div class="row"><button class="btn ghost" data-act="dstart">Play again</button><a class="btn" href="#dashboard">See dashboard</a></div></div>';
+  }
+  return '<div class="stack"><h2>Daily quiz</h2></div>' + quizHtml(dq, 'daily');
+}
+
+/* ---------- RENDER ---------- */
+function render(scroll) {
+  document.querySelectorAll('nav a').forEach(function (a) { var on = a.dataset.nav === (view.n === 'topic' ? 'learn' : view.n); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  app.innerHTML = view.n === 'learn' ? learnView() : view.n === 'topic' ? topicView() : view.n === 'daily' ? dailyView() : view.n === 'dashboard' ? dashboardView() : view.n === 'letters' ? lettersView() : homeView();
+  var f = document.getElementById('foot');
+  f.textContent = storeOK ? 'Your progress is saved automatically.' : 'Progress could not be saved in this view. Open the page in a normal browser tab to keep it.';
+  if (scroll) window.scrollTo(0, 0);
+}
+
+/* ---------- EVENTS ---------- */
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-act]'); if (!b || b.disabled) return;
+  var a = b.dataset.act, t = view.n === 'topic' ? topicById(view.id) : null;
+  if (a === 'speak') { speak(b.dataset.text, b.dataset.slow === '1'); return; }
+  if (a === 'alpha') { var ai = alphaItem(b.dataset.k); view.sel = b.dataset.k; if (ai) speak(ai.say); render(); return; }
+  if (a === 'aclose') { view.sel = null; render(); return; }
+  if (a === 'auto') { S.auto = !S.auto; save(); return; }
+  if (a === 'unlock') { S.unlockAll = !S.unlockAll; save(); render(); return; }
+  if (a === 'mode') { view.mode = b.dataset.m; if (b.dataset.m === 'voice' && sess.voice && sess.voice.done) sess.voice = null; render(true); return; }
+  if (a === 'lnext') { sess.lesson.i++; if (S.auto) speak(t.items[sess.lesson.i].ml); render(); return; }
+  if (a === 'lprev') { sess.lesson.i--; if (S.auto) speak(t.items[sess.lesson.i].ml); render(); return; }
+  if (a === 'lfinish') { if (!S.learned[t.id]) { S.learned[t.id] = true; award(20); addAct(1); addLog('Finished lesson: ' + t.name); save(); } view.mode = 'quiz'; render(true); return; }
+  if (a === 'qstart') { startTopicQuiz(t); render(true); return; }
+  if (a === 'dstart') { dq = buildDaily(); render(true); return; }
+  if (a === 'pick') { var qz = b.dataset.kind === 'daily' ? dq : sess.quiz; pickAnswer(qz, +b.dataset.i); render(); return; }
+  if (a === 'qnext') {
+    var z = b.dataset.kind === 'daily' ? dq : sess.quiz; z.i++;
+    if (z.i >= z.qs.length) {
+      z.done = true;
+      var pc = Math.round(z.score / z.qs.length * 100);
+      if (b.dataset.kind === 'daily') { var old = S.daily[today()]; if (!old || z.score > old.s) S.daily[today()] = { s: z.score, t: z.qs.length }; addLog('Daily quiz: ' + z.score + ' of ' + z.qs.length); award(10); }
+      else { S.quiz[t.id] = Math.max(S.quiz[t.id] || 0, pc); addLog('Practice quiz: ' + t.name + ' (' + pc + '%)'); }
+      save();
+    }
+    render(true); return;
+  }
+  if (a === 'vstart') { startVoice(t); render(true); return; }
+  if (a === 'vhint') { sess.voice.hint = true; render(); return; }
+  if (a === 'vretry') { sess.voice.verdict = null; vs.finals = ''; vs.partial = ''; vs.evaluated = false; render(); return; }
+  if (a === 'vnext') {
+    var v = sess.voice; v.i++; v.tries = 0; v.hint = false; v.verdict = null; vs.finals = ''; vs.partial = ''; vs.evaluated = false;
+    if (v.i >= v.items.length) finishVoice(t);
+    render(true); return;
+  }
+  if (a === 'selfok') { recordVoice(true, '', 1, true, true); render(); return; }
+  if (a === 'selfno') { recordVoice(false, '', 0, true, true); render(); return; }
+  if (a === 'vover') {
+    var v3 = sess.voice; v3.res[v3.i] = { ok: true, said: v3.verdict.said }; var itm = v3.items[v3.i];
+    S.miss[itm.key] = Math.max(0, (S.miss[itm.key] || 1) - 1); award(10); v3.verdict.ok = true; save(); render(); return;
+  }
+  if (a === 'mic') {
+    if (!dict) return;
+    if (dict.active()) { stopListening(); return; }
+    vs.finals = ''; vs.partial = ''; vs.evaluated = false; dictMsg = '';
+    dict.start({ language: 'ml' }).catch(function (err) {
+      var c = err && err.code;
+      if (c === 'unavailable') { mlBad = true; dictMsg = 'Malayalam voice recognition is not available for this account. You can still practise with self-marking.'; }
+      else if (c === 'not_granted') dictMsg = 'The microphone was not allowed. Allow it for this page, or practise with self-marking.';
+      else if (c === 'stopped' || c === 'dismissed') dictMsg = '';
+      else dictMsg = 'Could not start the microphone. Please try again.';
+      if (view.n === 'topic' && view.mode === 'voice') render();
+    });
+    return;
+  }
+});
+function stopListening() {
+  clearTimeout(vs.timer);
+  Promise.resolve(dict.stop()).catch(function () { }).then(function () { evaluateOnce(); });
+}
+
+/* ---------- CAPABILITIES ---------- */
+function wireDictation() {
+  dict.onPartial(function (e) { vs.partial = e.text || ''; updateMic(); });
+  dict.onFinal(function (e) {
+    vs.finals = (vs.finals + e.text).replace(/^\s+/, ''); vs.partial = ''; updateMic();
+    clearTimeout(vs.timer); vs.timer = setTimeout(function () { if (dict.active()) stopListening(); else evaluateOnce(); }, 1600);
+  });
+  dict.onState(function (e) {
+    vs.state = e.state; updateMic();
+    if (e.state === 'idle') {
+      if (e.reason === 'unavailable') { mlBad = true; dictMsg = 'Malayalam voice recognition is not available for this account. You can still practise with self-marking.'; render(); }
+      else if (e.reason === 'not_granted') { dictMsg = 'The microphone was not allowed. Allow it for this page, or practise with self-marking.'; render(); }
+      else if (vs.finals) evaluateOnce();
+    }
+  });
+}
+function initCaps() {
+  if (!(window.claude && typeof window.claude.use === 'function')) return;
+  window.claude.use('dictation').then(function (d) { if (d) { dict = d; wireDictation(); render(); } }).catch(function () { });
+  Promise.all([window.claude.use('db'), window.claude.use('user')]).then(function (r) {
+    var db = r[0], user = r[1]; if (!db || !user) return;
+    return user.id().then(function (id) {
+      if (!id) return;
+      dbDoc = db.doc('data/users/' + id + '/progress');
+      return dbDoc.get().then(function (snap) {
+        if (snap.exists) {
+          var st = JSON.parse(snap.data().state);
+          if ((st.savedAt || 0) > (S.savedAt || 0)) { S = Object.assign(blank(), st); saveLocal(); render(); }
+          else if ((S.savedAt || 0) > (st.savedAt || 0)) queueDb();
+        } else if (S.savedAt) queueDb();
+      });
+    });
+  }).catch(function () { });
+}
+
+/* ---------- START ---------- */
+loadLocal();
+checkTts();
+try { if (window.speechSynthesis) speechSynthesis.addEventListener('voiceschanged', function () { checkTts(); }); } catch (e) { }
+route();
+initCaps();
+</script>
+
+</body></html>
